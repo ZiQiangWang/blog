@@ -1,0 +1,101 @@
+/**
+ * @authors ZiQiangWang (814120507@qq.com)
+ * @date    2017-07-06 21:13:38
+ * @version $Id$
+ */
+
+.header {
+    opacity: 0;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    
+    overflow: hidden;
+    animation:fade-in 1s;
+    animation-delay: .2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode : forwards;
+
+    .header-background {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        background-image: url(../images/headr.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+
+    .title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        margin: 0 auto;
+        padding: 0 1em;
+        transform: translateX(-50%) translateY(-50%);
+
+        h1 {
+            padding: 0 0 .2em;
+            margin: 0;
+            color: white;
+        }
+    }
+
+    .trigger {
+        position: absolute;
+        left: 50%;
+        bottom: 40px;
+        width: 1em;
+        height: 1em;
+        transform: translateX(-50%);
+        
+        font-size: 2em;
+        background-color: transparent;
+        color: transparent;
+        border: none;
+        cursor: pointer;
+        outline:none;
+
+        transition: bottom .3s ease-in-out;
+    }
+
+    .trigger:before {
+        content: attr(data-info);
+        font-size: .35em;
+        position: absolute;
+        bottom: 100%;
+        left: -100%;
+        color: white;
+        width: 300%;
+        padding: .8em;
+    }
+
+    .trigger:hover {
+        bottom: 45px;
+    }
+}
+
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
