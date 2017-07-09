@@ -56,7 +56,7 @@ const _currentYPosition = () => {
 // 获取目标元素的位置
 const _elmYPosition = (eId) => {
     let ele = document.getElementById(eId);
-    return ele.offsetTop;
+    return ele.offsetTop+1;
 };
 
 // 滚动到指定元素位置

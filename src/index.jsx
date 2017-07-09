@@ -6,10 +6,20 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import App from './component/App';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import App from './redux/containers/App';
+import reducer from './redux/reducers';
 import './style/common.less';
 
+const middleware = [ thunk, createLogger() ];
+const store = createStore(reducer, applyMiddleware(...middleware));
+
 render(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('root')
 );

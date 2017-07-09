@@ -68,13 +68,7 @@ module.exports = {
         new extractTextPlugin("css/style.css"),
         new webpack.DefinePlugin({
             __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
-        }),
-        // new copyWebpackPlugin([
-        //     {
-        //         from: PATHS.root + '/images',
-        //         to: PATHS.dist + '/images',
-        //     }
-        // ])
+        })
     ],
     resolve: {
         extensions: ['jpg','.js', '.jsx', 'css', '.less'] //后缀名自动补全
