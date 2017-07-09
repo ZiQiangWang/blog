@@ -8,18 +8,40 @@ import reducer from '../reducers';
 import React, { Component }from 'react';
 import HeaderTop from '../../component/HeaderTop';
 import BlogContainer from './BlogContainer';
+import { scrollTo, currentYPosition } from '../../utils/utils';
 
 class App extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            started: false
+        }
+        this.handleScroll = this.handleScroll.bind(this);
+    }
+
+    handleClickStart() {
+        scrollTo(1, 5);
+    }
+
+    handleScroll() {
+        const scrollY = currentYPosition();
+        if (scrollY > 0 && !this.state.started ) {
+            this.setState({...this.state, started: true});
+        } else if (scrollY == 0 && this.state.started) {
+            this.setState({...this.state, started: false});
+        }
+    }
+
     componentDidMount() {
-        console.log(this.props);
+        window.addEventListener('scroll',this.handleScroll);
     }
 
     render() {
         return (
             <div>
-                <HeaderTop />
-                <BlogContainer />
+                <HeaderTop started={this.state.started } onClickStart={this.handleClickStart}/>
+                <BlogContainer started={this.state.started }/>
             </div>
         );
     }

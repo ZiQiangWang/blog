@@ -9,16 +9,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { requestArticleData } from '../actions/index';
 import ArticleItem from '../../component/ArticleItem';
+import Intro from '../../component/Intro';
 
 class BlogContainer extends Component {
-    
+    c
+
     componentDidMount() {
         this.props.requestArticleData();
     }
     render() {
         const arts = [1,2,3,4,5,6];
         return (
-            <div id="work">
+            <div id="work" style={{'marginTop': this.props.started ? '-200px':'0px'}}>
+                <Intro />
                 { arts.map((ele) => <ArticleItem key={ele}/>) }
             </div>
         );

@@ -49,7 +49,7 @@ const _ease = {
 };
 
 // 获取当前滚动条位置
-const _currentYPosition = () => {
+export const currentYPosition = () => {
     return  document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
 };
 
@@ -60,9 +60,16 @@ const _elmYPosition = (eId) => {
 };
 
 // 滚动到指定元素位置
-export const scrollTo = (eId, during = 60, ease = 'easeInOut') => {
-    let scrollY = _currentYPosition();
-    let targetY = _elmYPosition(eId);
+export const scrollTo = (pos, during = 60, ease = 'easeInOut') => {
+    let scrollY = currentYPosition();
+    let targetY;
+    if (typeof pos === 'string') {
+        targetY = _elmYPosition(pos);
+    } else if (typeof pos === 'number') {
+        targetY = pos;
+    } else {
+        throw new Error('Pos must be id or y position');
+    }
 
     var start = 0;
     var _run = function() {
@@ -72,14 +79,6 @@ export const scrollTo = (eId, during = 60, ease = 'easeInOut') => {
         if (start < during) requestAnimationFrame(_run);
     };
     _run();
-};
-
-export const scrollPercent = (eId) => {
-    let scrollY = _currentYPosition();
-    let targetY = _elmYPosition(eId);
-
-    return scrollY >= targetY ? 1 : scrollY / targetY; 
-
 };
 
 
