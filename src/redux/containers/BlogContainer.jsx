@@ -12,7 +12,6 @@ import ArticleItem from '../../component/ArticleItem';
 import Intro from '../../component/Intro';
 
 class BlogContainer extends Component {
-    c
 
     componentDidMount() {
         this.props.requestArticleData();

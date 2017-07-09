@@ -6,7 +6,6 @@
 
 
 import React, { Component } from 'react';
-import headrBg from '../images/headr.jpg';
 import '../style/header.less';
 
 class HeaderTop extends Component {
