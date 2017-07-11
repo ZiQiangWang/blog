@@ -8,10 +8,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { requestArticleData } from '../actions/index';
+import PropTypes from 'prop-types';
 import ArticleItem from '../../component/ArticleItem';
 import Intro from '../../component/Intro';
 import { scrollTo } from '../../utils/utils';
+
 class BlogContainer extends Component {
+    static propTypes = {
+        started: PropTypes.bool.isRequired
+    };
 
     componentDidMount() {
         this.props.requestArticleData();

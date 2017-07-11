@@ -6,9 +6,14 @@
 
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../style/header.less';
 
 class HeaderTop extends Component {
+    static propTypes = {
+        started: PropTypes.bool.isRequired,
+        onClickStart: PropTypes.func.isRequired
+    };
 
     render() {
         return (
