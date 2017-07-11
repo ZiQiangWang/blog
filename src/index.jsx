@@ -10,16 +10,15 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import App from './redux/containers/App';
 import reducer from './redux/reducers';
+import Router from './router';
 import './style/common.less';
 
 const middleware = [ thunk, createLogger() ];
 const store = createStore(reducer, applyMiddleware(...middleware));
-
 render(
     <Provider store={store}>
-        <App />
+        <Router />
     </Provider>,
     document.getElementById('root')
 );

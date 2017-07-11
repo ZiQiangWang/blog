@@ -10,7 +10,7 @@ import HeaderTop from '../../component/HeaderTop';
 import BlogContainer from './BlogContainer';
 import { scrollTo, currentYPosition } from '../../utils/utils';
 
-class App extends Component {
+class MainPage extends Component {
 
     constructor(props) {
         super(props);
@@ -39,7 +39,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{'width': '100%', 'height': '100%'}}>
                 <HeaderTop started={this.state.started} onClickStart={this.handleClickStart}/>
                 <BlogContainer started={this.state.started}/>
             </div>
@@ -48,4 +48,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default MainPage;
