@@ -42,17 +42,32 @@ module.exports = {
                 include: PATHS.src
             },
             {
+                test: /\.css$/,
+                use: extractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: ['css-loader?importLoaders=1','postcss-loader']
+                }),
+                exclude: PATHS.node_modules,
+                include: PATHS.src
+            },
+            {
                 test: /\.html$/,
                 use: [ 'html-loader' ],
                 exclude: PATHS.node_modules,
                 include: PATHS.src
             },
             {
-                test: /\.(png|jpg|svg|gif|eot|ttf|woff)$/,
+                test: /\.(png|jpg|gif)$/,
                 use: [ 'url-loader?limit=1024&name=images/[hash:8].[name].[ext]&publicPath=../' ],
                 exclude: PATHS.node_modules,
                 include: PATHS.src
             },
+            {
+                test: /\.(svg|eot|ttf|woff)$/,
+                use: [ 'url-loader?name=fonts/[name].[ext]&publicPath=../' ],
+                exclude: PATHS.node_modules,
+                include: PATHS.src
+            }
         ]
 
     },

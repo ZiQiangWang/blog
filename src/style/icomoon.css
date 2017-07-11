@@ -31,6 +31,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-enlarge:before {
+  content: "\e989";
+}
+.icon-shrink:before {
+  content: "\e98a";
+}
+.icon-sphere:before {
+  content: "\e9c9";
+}
 .icon-arrow-up:before {
   content: "\ea3a";
 }
