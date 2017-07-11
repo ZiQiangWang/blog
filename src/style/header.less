@@ -102,6 +102,10 @@
         border: none;
         cursor: pointer;
         outline:none;
+        
+        animation:jump 1s;
+        // animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
 
         span {
             position: absolute;
@@ -142,9 +146,14 @@
             font-size: .65em;
             cursor: pointer;
             width: 100px;
+            transition: color .2s;
             span {
                 margin-right: 8px;
             }
+        }
+
+        .fullscreen:hover, .link:hover {
+            color: #69606b;
         }
 
         .center {
@@ -179,3 +188,12 @@
         opacity: 1;
     }
 }
+
+@keyframes jump {
+    0%   {bottom:40px;}
+    25%  {bottom:45px;}
+    50%  {bottom:48px;}
+    75%  {bottom:45px;}
+    100% {bottom:40px;}
+}
+
