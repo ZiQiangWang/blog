@@ -1,0 +1,39 @@
+/**
+ * 
+ * @authors ZiQiangWang (814120507@qq.com)
+ * @date    2017-07-11 13:59:23
+ * @version $Id$
+ */
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?2jmglg');
+  src:  url('../fonts/icomoon.eot?2jmglg#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?2jmglg') format('truetype'),
+    url('../fonts/icomoon.woff?2jmglg') format('woff'),
+    url('../fonts/icomoon.svg?2jmglg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-up:before {
+  content: "\ea3a";
+}
+.icon-arrow-down:before {
+  content: "\ea3e";
+}

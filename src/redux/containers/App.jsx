@@ -40,8 +40,8 @@ class App extends Component {
     render() {
         return (
             <div>
-                <HeaderTop started={this.state.started } onClickStart={this.handleClickStart}/>
-                <BlogContainer started={this.state.started }/>
+                <HeaderTop started={this.state.started} onClickStart={this.handleClickStart}/>
+                <BlogContainer started={this.state.started}/>
             </div>
         );
     }

@@ -48,8 +48,8 @@ module.exports = {
                 include: PATHS.src
             },
             {
-                test: /\.(png|jpg|svg|gif)$/,
-                use: [ 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]&publicPath=../' ],
+                test: /\.(png|jpg|svg|gif|eot|ttf|woff)$/,
+                use: [ 'url-loader?limit=1024&name=images/[hash:8].[name].[ext]&publicPath=../' ],
                 exclude: PATHS.node_modules,
                 include: PATHS.src
             },

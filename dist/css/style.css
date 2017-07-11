@@ -1,4 +1,228 @@
 /**
+ * 
+ * @authors ZiQiangWang (814120507@qq.com)
+ * @date    2017-07-07 16:27:42
+ * @version $Id$
+ */
+/**  
+ * @authors ZiQiangWang (814120507@qq.com)
+ * @date    2017-07-06 21:44:36
+ * @version $Id$
+ */
+#work {
+  -webkit-transition: margin-top 0.5s;
+  transition: margin-top 0.5s;
+  position: relative;
+}
+#work #back-to-top {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+}
+.article-abstract {
+  margin-bottom: 20px;
+}
+.article-abstract .container {
+  margin: 0 auto 1.5em auto;
+  padding: 0 1.25em;
+  max-width: 960px;
+}
+.article-abstract h2 {
+  font-size: 2.6em;
+}
+.article-abstract p {
+  font-size: 1.35em;
+}
+/**
+ * @authors ZiQiangWang (814120507@qq.com)
+ * @date    2017-07-06 21:13:38
+ * @version $Id$
+ */
+/**  
+ * @authors ZiQiangWang (814120507@qq.com)
+ * @date    2017-07-06 21:44:36
+ * @version $Id$
+ */
+.headerContainer {
+  width: 100%;
+  height: 100%;
+}
+.header {
+  opacity: 0;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-animation: fade-in 1s;
+          animation: fade-in 1s;
+  -webkit-animation-delay: .2s;
+          animation-delay: .2s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.header .header-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url(../images/b173e7a4.header.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  -webkit-transition: -webkit-transform 0.25s ease-out;
+  transition: -webkit-transform 0.25s ease-out;
+  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
+}
+.header .header-background .header-background-after {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 101%;
+  -webkit-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 255, 255, 0)), to(#ffffff));
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #ffffff 100%);
+}
+.header .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 1em;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+.header .title h1 {
+  padding: 0 0 .2em;
+  margin: 0;
+  color: white;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+  font-size: 3.25em;
+}
+.header .title h1.started {
+  color: black;
+}
+.header .title p {
+  opacity: 0;
+  -webkit-transform: translateX(150px);
+          transform: translateX(150px);
+  -webkit-transition-property: opacity,-webkit-transform;
+  transition-property: opacity,-webkit-transform;
+  transition-property: transform,opacity;
+  transition-property: transform,opacity,-webkit-transform;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  font-size: 1.5em;
+}
+.header .title p.started {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+.header .trigger {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  width: 1em;
+  height: 1em;
+  z-index: 1000;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 2em;
+  background-color: transparent;
+  color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.header .trigger:before {
+  content: attr(data-info);
+  font-size: .35em;
+  position: absolute;
+  bottom: 100%;
+  left: -100%;
+  color: white;
+  width: 300%;
+  padding: .8em;
+}
+#intro {
+  padding: 0 1.25em;
+  color: black;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  -webkit-transition: bottom .5s;
+  transition: bottom .5s;
+  max-width: 960px;
+}
+#intro p {
+  font-size: 1.35em;
+}
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/**
+ * 
+ * @authors ZiQiangWang (814120507@qq.com)
+ * @date    2017-07-11 13:59:23
+ * @version $Id$
+ */
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url(../images/e5ad1f6c.icomoon.eot);
+  src:  url(../images/e5ad1f6c.icomoon.eot#iefix) format('embedded-opentype'),
+    url(../images/79109dae.icomoon.ttf) format('truetype'),
+    url(../images/2036c3b1.icomoon.woff) format('woff'),
+    url(../images/059b6d5c.icomoon.svg#icomoon) format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-up:before {
+  content: "\EA3A";
+}
+.icon-arrow-down:before {
+  content: "\EA3E";
+}
+/**
  * @authors ZiQiangWang (814120507@qq.com)
  * @date    2017-07-06 22:05:00
  * @version $Id$
@@ -93,133 +317,18 @@ body ::-moz-selection {
 body ::selection {
   background-color: rgba(212, 74, 108, 0.15);
 }
-/**
- * 
- * @authors ZiQiangWang (814120507@qq.com)
- * @date    2017-07-07 16:27:42
- * @version $Id$
- */
-.article-abstract {
-  margin-bottom: 20px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: Tahoma, Helvetica, Arial, 'SimSun', sans-serif;
 }
-.article-abstract .container {
-  margin: 0 auto 1.5em auto;
-  padding: 0 1.25em;
-  max-width: 960px;
-}
-.article-abstract h2 {
-  font-size: 2.6em;
-}
-.article-abstract p {
-  font-size: 1.35em;
-}
-/**
- * @authors ZiQiangWang (814120507@qq.com)
- * @date    2017-07-06 21:13:38
- * @version $Id$
- */
-.header {
-  opacity: 0;
-  display: block;
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  -webkit-animation: fade-in 1s;
-          animation: fade-in 1s;
-  -webkit-animation-delay: .2s;
-          animation-delay: .2s;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-.header .header-background {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-image: url(../images/1213b9e8.headr.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
-}
-.header .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  margin: 0 auto;
-  padding: 0 1em;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
-}
-.header .title h1 {
-  padding: 0 0 .2em;
-  margin: 0;
-  color: white;
-}
-.header .trigger {
-  position: absolute;
-  left: 50%;
-  bottom: 40px;
-  width: 1em;
-  height: 1em;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  font-size: 2em;
-  background-color: transparent;
-  color: transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  -webkit-transition: bottom 0.3s ease-in-out;
-  transition: bottom 0.3s ease-in-out;
-}
-.header .trigger:before {
-  content: attr(data-info);
-  font-size: .35em;
-  position: absolute;
-  bottom: 100%;
-  left: -100%;
-  color: white;
-  width: 300%;
-  padding: .8em;
-}
-.header .trigger:hover {
-  bottom: 45px;
-}
-@-webkit-keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+body,
+input,
+textarea {
+  color: #69606b;
+  background-color: white;
 }

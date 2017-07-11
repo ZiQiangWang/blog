@@ -18,10 +18,12 @@ class HeaderTop extends Component {
                 </div>
                 <div className="title">
                     <h1 className={this.props.started ? 'started':''}>我是我</h1>
-                    <p className={this.props.started ? 'started':''}>世界如此不同</p>
+                    <p className={this.props.started ? 'started':''}>我知道的世界 如此不同</p>
                 </div>
 
-                <button className="trigger" style={{ display: this.props.started ? 'none' : 'block' }} data-info="点此开始" onClick={this.props.onClickStart}></button>
+                <button className="trigger" style={{ display: this.props.started ? 'none' : 'block' }} data-info="点此开始" onClick={this.props.onClickStart}>
+                    <span className="icon-arrow-down"></span>
+                </button>
             </div>
         );
     }

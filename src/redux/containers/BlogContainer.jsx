@@ -10,11 +10,15 @@ import { connect } from 'react-redux';
 import { requestArticleData } from '../actions/index';
 import ArticleItem from '../../component/ArticleItem';
 import Intro from '../../component/Intro';
-
+import { scrollTo } from '../../utils/utils';
 class BlogContainer extends Component {
 
     componentDidMount() {
         this.props.requestArticleData();
+    }
+
+    handleClickBack() {
+        scrollTo(0,60);
     }
     render() {
         const arts = [1,2,3,4,5,6];
@@ -22,6 +26,9 @@ class BlogContainer extends Component {
             <div id="work" style={{'marginTop': this.props.started ? '-200px':'0px'}}>
                 <Intro />
                 { arts.map((ele) => <ArticleItem key={ele}/>) }
+                <button id="back-to-top" style={{display: this.props.started ? 'block':'none'}} onClick={this.handleClickBack}>
+                    <span className="icon-arrow-up"></span>
+                </button>
             </div>
         );
     }
