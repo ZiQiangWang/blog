@@ -1,0 +1,56 @@
+/**
+ * @authors ZiQiangWang (814120507@qq.com)
+ * @date    2017-07-12 17:19:14
+ */
+
+@import 'variable.less';
+
+.article-editor {
+  display: flex;
+  
+  // 自适应布局
+  .adaptive-layout;
+  
+  .result-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+
+    .result{
+      line-height: 1.5em;
+      color: #444;
+      padding: 10px;
+      padding-left: 20px;
+
+      .editor-font;
+    }
+
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 2em;
+      border-left: 0.5em #eee solid;
+    }
+
+    pre {
+      border: 1px solid #ccc;
+    }
+  }
+  .editor-container {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    .CodeMirror{
+      position: relative;
+      overflow: hidden;
+  
+      padding: 10px;
+      padding-left: 20px;
+      height: 100%;
+      top: 0;
+      bottom: 0;
+      .editor-font;
+    }
+  }
+}

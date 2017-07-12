@@ -28,22 +28,22 @@ const articleFailure = () => ({
 });
 
 
-export const requestArticleData = () => (dispatch, getState) => {
+export const requestArticleData = () => (dispatch) => {
     dispatch(articleRequest());
     fetch('http://www.subreddit.com/r/reactjs.json')
-    .then(response => response.json()
+        .then(response => response.json()
+            .then(json => {
+                if (!response.ok) {
+                    return Promise.reject(json);
+                }
+                return Promise.resolve(json);
+            })
+        )
         .then(json => {
-            if (!response.ok) {
-                return Promise.reject(json);
-            }
-            return Promise.resolve(json);
-        })
-    )
-    .then(json => {
-        dispatch(articleSuccess(json));
-    }, json => {
-        dispatch(articleFailure(json));
-    })
-}
+            dispatch(articleSuccess(json));
+        }, json => {
+            dispatch(articleFailure(json));
+        });
+};
 
 

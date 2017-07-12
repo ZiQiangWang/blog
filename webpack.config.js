@@ -46,9 +46,7 @@ module.exports = {
                 use: extractTextPlugin.extract({
                     fallback: "style-loader",
                     use: ['css-loader?importLoaders=1','postcss-loader']
-                }),
-                exclude: PATHS.node_modules,
-                include: PATHS.src
+                })
             },
             {
                 test: /\.html$/,

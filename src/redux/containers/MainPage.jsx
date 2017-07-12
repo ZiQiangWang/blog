@@ -39,7 +39,7 @@ class MainPage extends Component {
 
     render() {
         return (
-            <div style={{'width': '100%', 'height': '100%'}}>
+            <div className="wrap">
                 <HeaderTop started={this.state.started} onClickStart={this.handleClickStart}/>
                 <BlogContainer started={this.state.started}/>
             </div>

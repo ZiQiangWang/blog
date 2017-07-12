@@ -91,7 +91,7 @@ export const requestFullScreen = ()=> {
     } else if (de.webkitRequestFullScreen) {
         de.webkitRequestFullScreen();
     }
-}
+};
 //退出全屏
 export const exitFullscreen = ()=> {
     var de = document;
@@ -102,11 +102,11 @@ export const exitFullscreen = ()=> {
     } else if (de.webkitCancelFullScreen) {
         de.webkitCancelFullScreen();
     }
-}
+};
 
 export const checkFull = ()=> {
     var isFull =  document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
     return isFull;
-}
+};
 
 

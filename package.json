@@ -51,10 +51,11 @@
     "webpack-dev-server": "^2.5.0"
   },
   "dependencies": {
-    "draft-js": "^0.10.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-codemirror": "^1.0.0",
     "react-dom": "^15.6.1",
+    "react-markdown": "^2.5.0",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
