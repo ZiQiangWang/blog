@@ -54,9 +54,11 @@ class EditArticle extends React.Component {
           <Markdown 
             className="result"
             source={this.state.markdownSrc}
-            renderers={{...Markdown.renderers, 
-                        CodeBlock: CodeBlock
-                      }}
+            renderers={
+              {...Markdown.renderers, 
+                CodeBlock: CodeBlock
+              }
+            }
           />
         </div>
       </div>

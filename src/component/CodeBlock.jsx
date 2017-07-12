@@ -6,10 +6,17 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
 
 class CodeBlock extends Component {
+
+  static propTypes = {
+    literal: PropTypes.string,
+    language: PropTypes.string
+  };
+
   componentDidMount() {
     this.highlightCode();
   }
