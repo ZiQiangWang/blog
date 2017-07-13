@@ -44,12 +44,12 @@ class HeaderTop extends Component {
         return (
             <div className="header">
                 <div className="nav">
-                    <a className="fullscreen" onClick={this.handleFullscreen}>
+                    <a className="btn-icon" onClick={this.handleFullscreen}>
                         <span className={this.state.fullscreen ? "icon-shrink" : "icon-enlarge"}></span>
                         全屏浏览
                     </a>
                     <span className="center"></span>
-                    <a className="link">
+                    <a className="btn-icon">
                         <span className="icon-sphere"></span>
                         Github
                     </a>

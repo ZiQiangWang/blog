@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import ArticleItem from '../../component/ArticleItem';
 import Intro from '../../component/Intro';
 import { scrollTo } from '../../utils/utils';
-
+import '../../style/components.less'
 class BlogContainer extends Component {
     static propTypes = {
         started: PropTypes.bool.isRequired
@@ -31,7 +31,7 @@ class BlogContainer extends Component {
             <div id="work" style={{'marginTop': this.props.started ? '-200px':'0px'}}>
                 <Intro />
                 { arts.map((ele) => <ArticleItem key={ele}/>) }
-                <button id="back-to-top" style={{display: this.props.started ? 'block':'none'}} onClick={this.handleClickBack}>
+                <button id="back-to-top" className="btn btn-round orange" style={{display: this.props.started ? 'block':'none'}} onClick={this.handleClickBack}>
                     <span className="icon-arrow-up"></span>
                 </button>
             </div>
