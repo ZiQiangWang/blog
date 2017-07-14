@@ -32,7 +32,7 @@ class BlogContainer extends Component {
                 <Intro />
                 { arts.map((ele) => <ArticleItem key={ele}/>) }
                 <button id="back-to-top" className="btn btn-round orange" style={{display: this.props.started ? 'block':'none'}} onClick={this.handleClickBack}>
-                    <span className="icon-arrow-up"></span>
+                    <span className="icon-arrow-up2"></span>
                 </button>
             </div>
         );

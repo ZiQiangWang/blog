@@ -7,14 +7,13 @@
 
 import React, { Component } from 'react';
 
-class IconBtn extends Component {
+const IconBtn = (props) => {
 
-  render() {
-    return (
-      <span className={this.props.iconClass}>
-      </span>
-    )
-  }
+  return (
+    <a className="btn-icon default" onClick={ props.onClick }>
+      <span className={props.className}></span>
+    </a>
+  )
 }
 
 export default IconBtn;

@@ -7,9 +7,7 @@
 
 import React, { Component } from 'react';
 import Editor from '../../component/Editor';
-import MarkdownPreview from '../../component/MarkdownPreview';
-import EditorNav from './EditorNav';
-import ArticleSiderBar from './ArticleSiderBar';
+import Preview from './Preview';
 import '../../style/editor.less';
 
 class EditArticle extends React.Component {
@@ -34,20 +32,15 @@ class EditArticle extends React.Component {
     return (
 
       <div className="wrap">
+
         <section className="article-editor">
-          <div className="editor-container">
             <Editor 
               value={this.state.markdownSrc}
               onChange={this.onMarkdownChange}
             />
-          </div>
-          <div className="result-container">
-            <MarkdownPreview 
-              className="result"
+            <Preview
               source={this.state.markdownSrc}
-              options={{breaks: true}}
             />
-          </div>
         </section>
       </div>
     );

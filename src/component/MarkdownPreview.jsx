@@ -1,4 +1,5 @@
 /**
+ * 解析markdown语法，生成对应的html结构
  * @authors ZiQiangWang
  * @email   814120507@qq.com
  * @date    2017-07-13 20:40:24
@@ -17,8 +18,7 @@ class MarkdownPreview extends Component {
 
   static propTypes = {
     source: PropTypes.string.isRequired,
-    options: PropTypes.object,
-    className: PropTypes.string
+    options: PropTypes.object
   };
 
   constructor(props) {
@@ -72,7 +72,7 @@ class MarkdownPreview extends Component {
   }
 
   render() {
-    return <div id="markdown-preview" className={ this.props.className }></div>
+    return <div id="markdown-preview" className="preview"></div>
   }
 }
 

@@ -38,7 +38,6 @@ class HeaderTop extends Component {
                 fullscreen: true
             });
         }
-        console.log(this.state);
     }
     render() {
         return (
@@ -62,7 +61,7 @@ class HeaderTop extends Component {
                     <p className={this.props.started ? 'started':''}>我知道的世界 如此不同</p>
                 </div>
                 <button className="trigger" style={{ display: this.props.started ? 'none' : 'block' }} data-info="点此开始" onClick={this.props.onClickStart}>
-                    <span className="icon-arrow-down"></span>
+                    <span className="icon-arrow-down2"></span>
                 </button>
             </div>
         );
