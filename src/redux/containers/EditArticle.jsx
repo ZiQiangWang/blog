@@ -6,42 +6,23 @@
  */
 
 import React, { Component } from 'react';
-import Editor from '../../component/Editor';
-import Preview from './Preview';
 import '../../style/editor.less';
+import { requestFullScreen, exitFullscreen, checkFull } from '../../utils/utils';
+import { MarkdownEditor } from 'react-markdown-preview-editor';
+import Navbar from '../../component/Navbar';
+import 'react-markdown-preview-editor/lib/css/style.css';
+import 'highlight.js/styles/github.css';
 
 class EditArticle extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      markdownSrc: '',
-      codemirror: undefined
-    };
-
-      this.onMarkdownChange = this.onMarkdownChange.bind(this);
-  }
-
-  onMarkdownChange(md) {
-    this.setState({
-      markdownSrc: md
-    });
-  }
 
   render() {
     return (
-
       <div className="wrap">
-
-        <section className="article-editor">
-            <Editor 
-              value={this.state.markdownSrc}
-              onChange={this.onMarkdownChange}
-            />
-            <Preview
-              source={this.state.markdownSrc}
-            />
-        </section>
+        <Navbar />
+        <MarkdownEditor 
+          height="calc(100% - 48px)"
+          codemirrorOptions={{lineWrapping:true}}
+        />
       </div>
     );
   }

@@ -20,11 +20,11 @@ class MainPage extends Component {
         this.handleScroll = this.handleScroll.bind(this);
     }
 
-    handleClickStart() {
+    handleClickStart = () => {
         scrollTo(1, 5);
     }
 
-    handleScroll() {
+    handleScroll = () => {
         const scrollY = currentYPosition();
         if (scrollY > 0 && !this.state.started ) {
             this.setState({...this.state, started: true});

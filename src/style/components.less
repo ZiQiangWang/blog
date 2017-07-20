@@ -37,7 +37,6 @@
 
 .btn-icon {
     color: white;
-    font-size: .75em;
     cursor: pointer;
     width: auto;
     white-space: nowrap;
@@ -56,9 +55,28 @@
   color: lighten(@color-gray, 20%);
 }
 
+.bluegray {
+  color: @color-bluegray;
+}
+
+.bluegray:hover {
+  color: darken(@color-bluegray, 50%);
+}
+
 .orange {
+  color: white;
   background-color: @color-orange;
 }
 .orange:hover {
+  color: white;
   background-color: darken(@color-orange, 20%);
 }
+
+.green {
+  color: @color-green;
+}
+
+.green:hover {
+  color: lighten(@color-green, 20%);
+}
+
