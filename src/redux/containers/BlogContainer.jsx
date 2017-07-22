@@ -26,11 +26,15 @@ class BlogContainer extends Component {
         scrollTo(0,60);
     }
     render() {
-        const arts = [1,2,3,4,5,6];
+
+        const { entities, result } = this.props.article;
+        
         return (
+
             <div id="work" style={{'marginTop': this.props.started ? '-200px':'0px'}}>
                 <Intro />
-                { arts.map((ele) => <ArticleItem key={ele}/>) }
+
+                { result ? result.map((articleId) => <ArticleItem key={articleId} article={entities.article[articleId]} users={entities.author}/>) : ""}
                 <button id="back-to-top" className="btn btn-round orange" style={{display: this.props.started ? 'block':'none'}} onClick={this.handleClickBack}>
                     <span className="icon-arrow-up2"></span>
                 </button>

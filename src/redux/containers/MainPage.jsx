@@ -37,6 +37,9 @@ class MainPage extends Component {
         window.addEventListener('scroll',this.handleScroll);
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll',this.handleScroll);
+    }
     render() {
         return (
             <div className="wrap">

@@ -6,37 +6,34 @@
 @import 'variable.less';
 
 .sidenav {
-  background: rgba(50, 60, 60, 0.8); 
-  width: 200px;
+  overflow-x: hidden;
   overflow-y: auto;
-  position: absolute; 
-  left: 0; 
-  top: 0; 
-  bottom: 0; 
-  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 100%;
   padding: 0;
-  z-index: 1000;
-  transform: translateX(-100%);
-
+  margin: 0;
   transition: all .2s;
-
-  li {list-style-type: none;}
-  a { color: white; text-decoration: none; }
-  i {
-    display: block; width: 50px; float: left; 
-    font-size: 16px; line-height: 48px; text-align: center;
+  font-family: "Segoe UI",Arial,Helvetica,"Microsoft Jhenghei","Hiragino Sans GB","WenQuanYi Zen Hei","Microsoft Yahei",SimHei,STHeiti,"WenQuanYi Micro Hei",sans-serif;
+  
+  li:first-child {
+    font-size: 16px;
+    font-style: italic;
   }
 
-}
+  li {
+    list-style-type: none;
+    border-bottom: thin solid lightgray;
+    padding: 5px 20px;
+    cursor: pointer;
+    color: #69606b;
 
-#show-sidenav {
-  z-index: 1000;
-  position: fixed;
-  cursor: pointer;
-}
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+  }
 
-#sidenav-toggle {
-  display: none;
+  li:hover {
+    background-color: rgba(212,74,108,0.15);
+  }
 }
-
-#sidenav-toggle:checked ~ .sidenav {transform: translateX(0);}

@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import '../../style/components.less';
 import IconBtn from '../../component/IconBtn';
 
-
 const Toolbar = (props) => {
   return (
     <div className="toolbar">

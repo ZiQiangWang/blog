@@ -26,20 +26,36 @@
 .article-abstract {
     
     margin-bottom: 20px;
-
     .container {
         margin: 0 auto 1.5em auto;
         padding: 0 1.25em;
         max-width: 960px;
+
+        h2 {
+            font-size: 2.4em;
+            cursor: pointer;
+            transition: color .25s;
+        }
+
+        h2:hover {
+            color: #444;
+        }
+
+        p {
+            font-size: 1.35em;
+            word-break: break-word;
+        }
+
+        .info {
+            display: flex;
+            justify-content: flex-end;
+            span {
+                padding-left: 25px; 
+            }
+        }
     }
 
-    h2 {
-        font-size: 2.4em;
-    }
 
-    p {
-        font-size: 1.35em;
-    }
 }
 
 .navbar {
@@ -49,4 +65,5 @@
     line-height: 48px;
     font-size: 14px;
     display: flex;
+    justify-content: flex-end;
 }
