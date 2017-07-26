@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { requestArticleData } from '../actions/index';
+import { articleList } from '../actions/index';
 import PropTypes from 'prop-types';
 import ArticleItem from '../../component/ArticleItem';
 import Intro from '../../component/Intro';
@@ -19,7 +19,7 @@ class BlogContainer extends Component {
     };
 
     componentDidMount() {
-        this.props.requestArticleData();
+        this.props.articleList();
     }
 
     handleClickBack() {
@@ -47,4 +47,4 @@ const mapStateToProps = (state) => {
     return state;
 }
 
-export default connect(mapStateToProps, { requestArticleData })(BlogContainer);
+export default connect(mapStateToProps, { articleList })(BlogContainer);

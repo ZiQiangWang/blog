@@ -38,11 +38,13 @@ articles = [
 
 @app.route('/blog/api/v1/articles', methods=['GET'])
 def get_articles():
+    print "++++++++++++"
     return jsonify(articles)
 
-@app.route('/blog/api/v1/articles/<int:article_id>', methods=['GET'])
-def get_article(article_id):
-    article = filter(lambda a: a['id'] == article_id, articles)
+@app.route('/blog/api/v1/articles/<articleId>', methods=['GET'])
+def get_article(articleId):
+    print "===========",articleId
+    article = filter(lambda a: a['id'] == int(articleId), articles)
     return jsonify(article[0])
 
 @app.route('/blog/api/v1/articles', methods=['POST'])

@@ -13,52 +13,96 @@ export const toggleShowArticle = () => ({
     type: SHOW_ARTICLE_LIST
 });
 
-const user = new schema.Entity('author');
-const category = new schema.Entity('category');
-const article = new schema.Entity('article',{
-    author: user,
-    category: [ category ]
+export const ARTICLE_CHANGE = 'ARTICLE_CHANGE';
+export const articleChange = (id, text) => ({
+    type: ARTICLE_CHANGE,
+    id,
+    text
 });
-const articleList = [ article ];
 
+export const ARTICLE_SWITCH = 'ARTICLE_SWITCH';
+export const articleSwitch = (id) => ({
+    type: ARTICLE_SWITCH,
+    id
+});
 
-export const ARTICLE_REQUEST = 'ARTICLE_REQUEST';
-export const ARTICLE_SUCCESS = 'ARTICLE_SUCCESS';
-export const ARTICLE_FAILURE = 'ARTICLE_FAILURE';
+export const ARTICLE_LIST_REQUEST = 'ARTICLE_LIST_REQUEST';
+export const ARTICLE_LIST_SUCCESS = 'ARTICLE_LIST_SUCCESS';
+export const ARTICLE_LIST_FAILURE = 'ARTICLE_LIST_FAILURE';
 
 // 发起获取数据请求
-const articleRequest = () => ({
-    type: ARTICLE_REQUEST,
+const articleListRequest = () => ({
+    type: ARTICLE_LIST_REQUEST,
 });
 
 // 获取数据
-const articleSuccess = (response) => ({
-    type: ARTICLE_SUCCESS,
+const articleListSuccess = (response) => ({
+    type: ARTICLE_LIST_SUCCESS,
     response
 });
 
 // 请求输错时
-const articleFailure = () => ({
-    type: ARTICLE_FAILURE
+const articleListFailure = (response) => ({
+    type: ARTICLE_LIST_FAILURE,
+    response
 });
 
 
-export const requestArticleData = () => (dispatch) => {
-    dispatch(articleRequest());
-    fetch('http://127.0.0.1:5000/blog/api/v1/articles',
+export const articleList = () => (dispatch) => {
+    dispatch(articleListRequest());
+    fetch('http://127.0.0.1:5000/blog/api/v1/article',
         {method: 'GET', mode: 'cors'})
         .then(response => response.json()
             .then(json => {
                 if (!response.ok) {
                     return Promise.reject(json);
                 }
-                return Promise.resolve(normalize(json,articleList));
+                return Promise.resolve(json);
             })
         )
         .then(json => {
-            dispatch(articleSuccess(json));
+            dispatch(articleListSuccess(json));
         }, json => {
-            dispatch(articleFailure(json));
+            dispatch(articleListFailure(json));
+        });
+};
+
+export const ARTICLE_DETAIL_REQUEST = 'ARTICLE_DETAIL_REQUEST';
+export const ARTICLE_DETAIL_SUCCESS = 'ARTICLE_DETAIL_SUCCESS';
+export const ARTICLE_DETAIL_FAILURE = 'ARTICLE_DETAIL_FAILURE';
+
+// 发起获取数据请求
+const articleDetailRequest = () => ({
+    type: ARTICLE_DETAIL_REQUEST
+});
+
+// 获取数据
+const articleDetailSuccess = (response) => ({
+    type: ARTICLE_DETAIL_SUCCESS,
+    response
+});
+
+// 请求输错时
+const articleDetailFailure = () => ({
+    type: ARTICLE_DETAIL_FAILURE
+});
+
+export const articleDetail = (articleId) => (dispatch) => {
+    dispatch(articleDetailRequest());
+    fetch('http://127.0.0.1:5000/blog/api/v1/article/'+articleId,
+        {method: 'GET', mode: 'cors'})
+        .then(response => response.json()
+            .then(json => {
+                if (!response.ok) {
+                    return Promise.reject(json);
+                }
+                return Promise.resolve(json);
+            })
+        )
+        .then(json => {
+            dispatch(articleDetailSuccess(json));
+        }, json => {
+            dispatch(articleDetailFailure(json));
         });
 };
 

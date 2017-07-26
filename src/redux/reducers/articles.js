@@ -4,7 +4,8 @@
  * @date    2017-07-20 19:06:56
  */
 
-import { SHOW_ARTICLE_LIST, ARTICLE_REQUEST, ARTICLE_SUCCESS, ARTICLE_FAILURE, 
+import { ARTICLE_SWITCH, ARTICLE_CHANGE, SHOW_ARTICLE_LIST, ARTICLE_LIST_REQUEST, ARTICLE_LIST_SUCCESS, ARTICLE_LIST_FAILURE, 
+        ARTICLE_DETAIL_REQUEST, ARTICLE_DETAIL_SUCCESS, ARTICLE_DETAIL_FAILURE, 
         ADD_ARTICLE_REQUEST, ADD_ARTICLE_SUCCESS, ADD_ARTICLE_FAILURE } from '../actions/index';
 
 const initState = {
@@ -12,9 +13,9 @@ const initState = {
     error: false,
     msg:"",
     showArticleList: true,
-    editing:"",
-    entities:{},
-    result:[]
+    current: -1,
+    articleIndex:[],
+    articles:{}
 };
 
 const articles = (state=initState, action) => {
@@ -24,20 +25,58 @@ const articles = (state=initState, action) => {
             ...state,
             showArticleList: !state.showArticleList
         }
-    case ARTICLE_REQUEST:
+    case ARTICLE_CHANGE:
+        return {
+            ...state,
+            articles: {
+                ...state.articles,
+                [action.id]: {
+                    ...state.articles[action.id],
+                    content: action.text
+                }
+            }
+        }
+    case ARTICLE_SWITCH:
+        return {
+            ...state,
+            current: action.id
+        }
+    case ARTICLE_LIST_REQUEST:
         return {
             ...state,
             isFetching: true,
             error: false
         };
-    case ARTICLE_SUCCESS:
+    case ARTICLE_LIST_SUCCESS:
         return {
             ...state,
             isFetching: false,
             error: false,
-            ...action.response
+            articleIndex: action.response
         };
-    case ARTICLE_FAILURE:
+    case ARTICLE_LIST_FAILURE:
+        return {
+            ...state,
+            isFetching: false,
+            error: true
+        };
+    case ARTICLE_DETAIL_REQUEST:
+        return {
+            ...state,
+            isFetching: true,
+            error: false
+        };
+    case ARTICLE_DETAIL_SUCCESS:
+        return {
+            ...state,
+            isFetching: false,
+            error: false,
+            articles: {
+                ...state.articles,
+                [action.response.id]:action.response
+            }
+        };
+    case ARTICLE_DETAIL_FAILURE:
         return {
             ...state,
             isFetching: false,

@@ -6,31 +6,62 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { articleList, articleDetail, articleSwitch } from '../actions/index';
+import { NavLink } from 'react-router-dom';
 import '../../style/editor.less';
 
 class ArticleSideBar extends Component {
+  
+  componentWillMount() {
+    this.props.articleList();
+  }
 
+  handleClickArticle = (articleId) => {
+    const {articles} = this.props;
+
+    if (articles[articleId] === undefined) {
+      this.props.articleDetail(articleId);
+    }
+    this.props.articleSwitch(articleId);
+  }
+
+  handleCreateArticle = () => {
+
+  }
 
   render() {
 
+    const { articleIndex, showArticleList } = this.props;
+
+    let articlesNav;
+    if (articleIndex.length) {
+      articlesNav = articleIndex.map((item) => {
+            return (
+              <li key={item.id} onClick={() => this.handleCreateArticle()}>
+                <NavLink 
+                  activeStyle={{background: 'rgba(212,74,108,0.15)'}} 
+                  to={"/edit/"+item.id} 
+                  onClick={() => this.handleClickArticle(item.id)}>{item.title}
+                </NavLink>
+              </li>
+            );
+      });
+    } else {
+      articlesNav = <div>文章列表</div>
+    }
+
     return (
-      <ul className="sidenav" style={{width: this.props.showArticleList ? '30%':'0'}}>
+      <ul className="sidenav" style={{width: showArticleList ? '30%':'0'}}>
         <li>新建文章</li>
-        {this.props.articleList.map((index) => {
-          return <li key={index}>{this.props.articles[index].title}</li>
-        })}
+        { articlesNav }
       </ul>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-    return {
-      articles: state.article.entities.article,
-      articleList: state.article.result,
-      showArticleList: state.article.showArticleList
-    }
-
+    const { article } = state;
+    return article;
 }
 
-export default connect(mapStateToProps)(ArticleSideBar);
+export default connect(mapStateToProps,{articleList, articleDetail, articleSwitch})(ArticleSideBar);
