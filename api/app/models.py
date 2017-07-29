@@ -19,6 +19,7 @@ class Article(db.Model):
   id = db.Column(db.String(32), primary_key=True, index=True)
   title = db.Column(db.String)
   content = db.Column(db.Text)
+  publish = db.Column(db.Boolean, default=False)
   author_id = db.Column(db.Integer, db.ForeignKey('user.id'))
   author = db.relationship('User', backref='article')
   update_time = db.Column(db.Integer)

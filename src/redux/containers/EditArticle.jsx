@@ -52,7 +52,7 @@ class EditArticle extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+
     const { articles, current, isAuthenticated } = this.props;
 
     // 如果没有登录，则跳转到登录界面
@@ -84,7 +84,7 @@ class EditArticle extends React.Component {
         <div className="wrap">
           <input type="text" className="title" value={title} onChange={this.handleTitleChange}/>
           <MarkdownEditor 
-            height="calc(100% - 50px)"
+            height="calc(100% - 55px)"
             value={content}
             onArticleChange={this.handleArticleChange}
           />

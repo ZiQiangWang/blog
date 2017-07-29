@@ -7,13 +7,13 @@
 
 .title {
   margin: 0;
+  padding: 10px 30px;
   border: none;
   border-left: thin solid lightgray;
   outline: none;
   width: 100%;
-  font-size: 36px;
-  padding: 4px 8px;
-  height: 50px;
+  font-size: 30px;
+  line-height: 30px;
   font-weight: bold;
 }
 
@@ -44,7 +44,7 @@
   }
   @media screen and (max-width: 800px){
     height: calc(~"100% - 48px") !important;
-    width: 80% !important;
+    width: 100% !important;
     position: absolute;
     z-index: 100;
     background: white;
@@ -86,14 +86,14 @@
       display: block !important;
     }
 
-    a:first-child {
+    a:nth-of-type(2) {
       display: block;
       width: 100%;
 
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow-x: hidden;
-      padding: 5px 20px;
+      padding: 5px 50px;
 
       color: #69606b;
     }

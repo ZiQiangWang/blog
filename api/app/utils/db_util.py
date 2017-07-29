@@ -21,8 +21,11 @@ def get_articles_of_page(page):
 
 # article list
 def get_articles_of_user(user_id):
-  articles = Article.query.with_entities(Article.id,Article.title,Article.update_time).filter_by(author_id=user_id).order_by(Article.update_time.desc()).all()
-  return [ {'id': article[0], 'title': article[1], 'update_time': article[2]} for article in articles ]
+  articles = Article.query.filter_by(author_id=user_id).order_by(Article.update_time.desc()).all()
+
+  return [ {k: v for k, v in article.to_dict().items() if k not in ['content', 'author_id']} for article in articles]
+
+  # return [ {'id': article[0], 'title': article[1], 'update_time': article[2], 'publish': article[3]} for article in articles ]
 
 # add article 
 def add_article(data):

@@ -28,7 +28,7 @@ export const articleList = (token) => ({
   [CALL_API]: {
     types: [CONST.ARTICLE_LIST_REQUEST, CONST.ARTICLE_LIST_SUCCESS, CONST.ARTICLE_LIST_FAILURE],
     method: 'GET',
-    endpoint: 'article?token='+token
+    endpoint: 'article/?token='+token
   }
 });
 
@@ -50,12 +50,12 @@ export const createArticle = (title="新建", content="",token="#") => ({
   }
 });
 
-export const updateArticle = (token="#", {id, title, content}) => ({
+export const updateArticle = (token="#", {id, title, content, publish}) => ({
   [CALL_API]: {
     types: [CONST.UPDATE_ARTICLE_REQUEST, CONST.UPDATE_ARTICLE_SUCCESS, CONST.UPDATE_ARTICLE_FAILURE],
     method: 'PUT',
     endpoint: 'article/'+id,
-    params: {token, title, content}
+    params: {token, title, content, publish}
   }
 });
 

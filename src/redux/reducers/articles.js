@@ -113,7 +113,7 @@ const articles = (state=initState, action) => {
             },
             articleIndex: state.articleIndex.map((item) => {
                 if (item.id === newArticle.id) {
-                    return {...item, title: newArticle.title, update_time: newArticle.update_time}
+                    return {...item, title: newArticle.title, publish: newArticle.publish, update_time: newArticle.update_time}
                 }
 
                 return item;

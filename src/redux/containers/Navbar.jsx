@@ -20,6 +20,12 @@ class Navbar extends Component {
     this.props.updateArticle(token, article);
   }
 
+  handlePublish = () => {
+    const { articles, current, auth: {token} } = this.props;
+    const article = articles[current];
+    this.props.updateArticle(token, {...article, publish: true});
+  }
+
   handleToggleArticle = () => {
     this.props.toggleShowArticle();
   }
@@ -62,7 +68,7 @@ class Navbar extends Component {
             iconTheme: "green",
             text: "发布"
           }} 
-          onClick={() => this.handleSave()}
+          onClick={() => this.handlePublish()}
         /> 
         <IconBtn config={{
             icon: "icon-exit",

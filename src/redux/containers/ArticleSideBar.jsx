@@ -29,7 +29,7 @@ class ArticleSideBar extends Component {
   }
 
   handleCreateArticle = () => {
-    this.props.createArticle("新建文章","",this.props.token)
+    this.props.createArticle("无标题文章","",this.props.token)
   }
 
   handleDeleteArticle = (id) => {
@@ -45,6 +45,12 @@ class ArticleSideBar extends Component {
       articlesNav = articleIndex.map((item) => {
             return (
               <li key={item.id} style={{position:'relative'}}>
+                <IconBtn config={{
+                    icon: item.publish ? "icon-leaf":"icon-quill",
+                    iconTheme: item.publish ? 'icon-green': 'icon-gray' 
+                  }} 
+                  style={{position:'absolute', left:'0', top: '50%',transform: 'translateY(-50%)',margin:'0 20px'}}
+                /> 
                 <NavLink 
                   activeClassName="nav-link"
                   to={"/edit/"+item.id} 
@@ -53,7 +59,7 @@ class ArticleSideBar extends Component {
                 <IconBtn config={{
                     icon: "icon-bin"
                   }} 
-                  style={{position:'absolute', right:'0', top: '50%',transform: 'translateY(-50%)',display:'none'}}
+                  style={{position:'absolute', right:'0', top: '50%',transform: 'translateY(-50%)',display:'none',fontSize:'16px'}}
                   onClick={() => this.handleDeleteArticle(item.id)}
                 /> 
               </li>

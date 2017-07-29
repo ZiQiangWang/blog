@@ -31,6 +31,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-quill:before {
+  content: "\e907";
+}
 .icon-floppy-disk:before {
   content: "\e962";
 }
@@ -39,6 +42,9 @@
 }
 .icon-shrink:before {
   content: "\e98a";
+}
+.icon-leaf:before {
+  content: "\e9a4";
 }
 .icon-bin:before {
   content: "\e9ac";
