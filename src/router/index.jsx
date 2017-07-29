@@ -8,7 +8,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import MainPage from '../redux/containers/MainPage';
 import EditArticle from '../redux/containers/EditArticle';
 import NotFound from '../component/NotFound';
-
+import Login from '../redux/containers/Login';
 
 const routes = ()=> {
   return (
@@ -17,6 +17,7 @@ const routes = ()=> {
         <Switch>
           <Route exact path='/' component={MainPage} />
           <Route exact path='/edit' component={EditArticle} />
+          <Route path='/login' component={Login} />
           <Route path='/edit/:id' component={EditArticle} />
           <Route component={NotFound} />
         </Switch>

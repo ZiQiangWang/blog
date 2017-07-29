@@ -5,6 +5,39 @@
 
 @import 'variable.less';
 
+.title {
+  margin: 0;
+  border: none;
+  border-left: thin solid lightgray;
+  outline: none;
+  width: 100%;
+  font-size: 36px;
+  padding: 4px 8px;
+  height: 50px;
+  font-weight: bold;
+}
+
+.article-empty {
+  background: #f1f1f1;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+
+  .placeholder {
+    display: inline-block;
+    vertical-align: middle;
+    color: #e4e4e4;
+    font-size: 64px;
+    text-shadow: 0 1px 0 white;
+  }
+}
+.article-empty:after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
 .sidenav {
   overflow-x: hidden;
   overflow-y: auto;
@@ -29,8 +62,17 @@
     color: #69606b;
     padding: 0;
     margin: 0;
+  
+    .nav-link {
+      background: rgba(212,74,108,0.15);
+      border-left: 4px solid red;
+    }
 
-    a {
+    .nav-link + .btn-icon {
+      display: block !important;
+    }
+
+    a:first-child {
       display: block;
       width: 100%;
 

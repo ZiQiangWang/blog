@@ -6,7 +6,9 @@
  */
 import { combineReducers } from 'redux';
 import article from './articles';
+import auth from './auth';
+import fetchState from './fetchState';
 
-const rootReducer = combineReducers({article});
+const rootReducer = combineReducers({article, auth, fetchState});
 
 export default rootReducer;

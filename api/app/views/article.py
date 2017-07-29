@@ -4,25 +4,31 @@
 # @Author  : ZiQiangWang
 # Email    : 814120507@qq.com
 
-from flask import Blueprint, jsonify, url_for
+from flask import Blueprint, jsonify, url_for, request, abort
 from ..utils import db_util, util
+from .. import rds
 import traceback
+import json
 
 article = Blueprint('article', __name__)
 
 @article.route('/', methods=['GET'])
 def article_list():
-  articles = db_util.get_articles_of_user(1)
-  for article in articles:
-    article['url'] = util.make_article_url(article['id'])
-  
+  params = request.args
+  token = params['token']
+  author_id = rds.get(token)
+  if not author_id:
+    abort(401)
+  try:
+    articles = db_util.get_articles_of_user(int(author_id))
+  except Exception as e:
+    traceback.print_exc()
+    abort(500)
   return jsonify(articles)
 
-@article.route('/page', methods=['GET'])
-def article_page():
-  articles = db_util.get_articles_of_page(1)
-  for article in articles:
-    article['url'] = util.make_article_url(article['id'])
+@article.route('/page/<num>', methods=['GET'])
+def article_page(num):
+  articles = db_util.get_articles_of_page(num)
   return jsonify(articles)
 
 
@@ -30,37 +36,58 @@ def article_page():
 def article_detail(articleId):
   try:
     article = db_util.get_article_by_id(articleId)
-    article['url'] = util.make_article_url(articleId)
   except Exception as e:
     raise
   return jsonify(article)
 
 @article.route('/', methods=['POST'])
 def create_article():
+  params = json.loads(request.data)
+  token = params['token']
+  author_id = rds.get(token)
+  if not author_id:
+    abort(401)
+  params['author_id'] = int(author_id)
+  del params['token']
+  
   try:
-    db_util.add_article({'title':'test', 'content': 'trqweert', 'author_id':1})
+    article = db_util.add_article(params)
   except Exception as e:
-    return jsonify({'flag': False, 'msg': '创建失败'})
+    traceback.print_exc()
+    abort(500)
 
-  return jsonify({'flag': True, 'msg': '创建成功'})
+  return jsonify(article)
 
 @article.route('/<articleId>', methods=['PUT'])
 def update_article(articleId):
+  
+  params = json.loads(request.data)
+  token = params['token']
+  author_id = rds.get(token)
+  if not author_id:
+    abort(401)
+  del params['token']
+
   try:
-    db_util.update_article_by_id(articleId, request.json)
+    article = db_util.update_article_by_id(articleId, params)
   except Exception as e:
     traceback.print_exc()
-    return jsonify({'flag': False, 'msg': '更新失败'})
+    abort(500)
 
-  return jsonify({'flag': True, 'msg': '更新成功'})
-  
+  return jsonify(article)
 
 @article.route('/<articleId>', methods=['DELETE'])
 def delete_article(articleId):
+  params = json.loads(request.data)
+  token = params['token']
+  author_id = rds.get(token)
+  if not author_id:
+    abort(401)
+
   try:
     db_util.delete_article_by_id(articleId)
   except Exception as e:
     traceback.print_exc()
-    return jsonify({'flag': False, 'msg': '删除失败'})
+    abort(500)
 
-  return jsonify({'flag': True, 'msg': '删除成功'})
+  return jsonify({'articleId': articleId})

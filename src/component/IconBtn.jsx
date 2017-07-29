@@ -11,7 +11,11 @@ const IconBtn = (props) => {
   const config = props.config;
 
   return (
-    <a className={ "btn-icon "+(config.iconTheme || "default") } onClick={ props.onClick } title={ config.tips }>
+    <a 
+      className={ "btn-icon "+(config.iconTheme || "default") } 
+      onClick={ props.onClick } 
+      title={ config.tips }
+      style={props.style}>
       <span className={config.icon}></span>
       {config.text}
     </a>
@@ -25,7 +29,8 @@ IconBtn.propTypes = {
       iconTheme: PropTypes.string,
       tips: PropTypes.string,
       text: PropTypes.string
-    })
+    }),
+    style: PropTypes.object
 };
 
 

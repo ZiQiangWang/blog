@@ -40,8 +40,20 @@
 .icon-shrink:before {
   content: "\e98a";
 }
+.icon-bin:before {
+  content: "\e9ac";
+}
+.icon-menu:before {
+  content: "\e9bd";
+}
 .icon-sphere:before {
   content: "\e9c9";
+}
+.icon-enter:before {
+  content: "\ea13";
+}
+.icon-exit:before {
+  content: "\ea14";
 }
 .icon-arrow-up2:before {
   content: "\ea3a";

@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { articleList } from '../actions/index';
+import { articleList } from '../actions/article';
 import PropTypes from 'prop-types';
 import ArticleItem from '../../component/ArticleItem';
 import Intro from '../../component/Intro';

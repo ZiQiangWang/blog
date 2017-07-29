@@ -126,3 +126,16 @@ export const byteWidth = (word)=> {
     }
     return totalLength;  
 }
+
+export const objFilter = (obj, func) => {
+  if (typeof func !== 'function') {
+    throw new Error('Second argument expected a function');
+  }
+  let ret = {};
+  for(let key in obj) {
+    if(obj.hasOwnProperty(key) && func(obj[key], key)) {
+      ret[key] = obj[key];
+    }
+  }
+  return ret;
+}
