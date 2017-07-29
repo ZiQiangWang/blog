@@ -64,7 +64,7 @@ class ArticleSideBar extends Component {
     }
 
     return (
-      <ul className="sidenav" style={{width: showArticleList ? '30%':'0'}}>
+      <ul className={"sidenav " + (showArticleList ? "sidenav-width": "")}>
         <li onClick={() => this.handleCreateArticle()}>新建文章</li>
         { articlesNav }
       </ul>

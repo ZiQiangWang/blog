@@ -38,12 +38,26 @@
   vertical-align: middle;
 }
 
+.sidenav-width {
+  @media screen and (min-width: 801px){
+    width: 30% !important;
+  }
+  @media screen and (max-width: 800px){
+    height: calc(~"100% - 48px") !important;
+    width: 80% !important;
+    position: absolute;
+    z-index: 100;
+    background: white;
+    border-right: thin solid lightgray;
+  }
+}
 .sidenav {
   overflow-x: hidden;
   overflow-y: auto;
   white-space: nowrap;
   text-overflow: ellipsis;
   height: 100%;
+  width: 0;
   padding: 0;
   margin: 0;
   transition: all .2s;
