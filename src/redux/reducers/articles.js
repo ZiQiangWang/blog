@@ -12,7 +12,7 @@ const initState = {
     showArticleList: true,
     articleIndex:undefined,
     articles:{},
-    editor: {id:"", title:"", content:""}
+    editor: {id:"", title:"", content:"", publish: undefined}
 };
 
 const articles = (state=initState, action) => {
@@ -38,7 +38,8 @@ const articles = (state=initState, action) => {
             editor: {
                 id: action.article.id,
                 title: action.article.title,
-                content: action.article.content
+                content: action.article.content,
+                publish: action.article.publish
             }
         }
     case CONST.ARTICLE_LIST_REQUEST:

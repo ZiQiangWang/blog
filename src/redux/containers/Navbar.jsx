@@ -20,8 +20,17 @@ class Navbar extends Component {
   }
 
   handlePublish = () => {
-    const { token } = this.props.auth;
-    this.props.updateArticle(token, { publish: true });
+    const {editor, articles, auth: {token}} = this.props;
+    const article = articles[editor.id];
+    if (!article.publish) {
+      this.props.updateArticle(token,{...editor, publish: true});
+    } else {
+      if (editor.title === article.title && editor.content === article.content) {
+        this.props.updateArticle(token,{id:editor.id, publish: false});
+      } else {
+        this.props.updateArticle(token,{...editor, publish: true});
+      }
+    }
   }
 
   handleToggleArticle = () => {
@@ -29,22 +38,43 @@ class Navbar extends Component {
   }
 
   render() {
-    const {isAuthenticated, token} = this.props.auth;
 
-    const authBtn = isAuthenticated ? (
-      <IconBtn config={{
-          icon: "icon-exit",
-          iconTheme: "green",
-          text: "登出"
-        }} 
-        onClick={() => this.props.logout(token)}
-      /> 
-    ) : (
-    <Link to="/login" className="btn-icon green">
-      <span className="icon-enter"></span>
-      登录
-    </Link>);
+    const {editor, articles} = this.props;
+    let save,publish;
+    if (editor.id !== "") {
+      save = (
+        <IconBtn config={{
+            icon: "icon-floppy-disk",
+            iconTheme: "btn-blue",
+            text: "保存"
+          }} 
+          onClick={() => this.handleSave()}
+        /> 
+      );
 
+      const article = articles[editor.id];
+      let publishText;
+      if (!article.publish) {
+        publishText = "发布";
+      } else {
+        if (editor.title === article.title && editor.content === article.content) {
+          publishText = "撤回发布";
+        } else {
+          publishText = "再次发布";
+        }
+      }
+      publish= (
+        <IconBtn config={{
+            icon: "icon-share",
+            iconTheme: "btn-blue",
+            text: publishText
+          }} 
+          onClick={() => this.handlePublish()}
+        /> 
+      );
+    }
+
+    const {token} = this.props.auth;
     return (
       <div className="navbar">
         <IconBtn config={{
@@ -54,20 +84,8 @@ class Navbar extends Component {
           }} 
           onClick={() => this.handleToggleArticle()}
         /> 
-        <IconBtn config={{
-            icon: "icon-floppy-disk",
-            iconTheme: "green",
-            text: "保存"
-          }} 
-          onClick={() => this.handleSave()}
-        /> 
-        <IconBtn config={{
-            icon: "icon-share",
-            iconTheme: "green",
-            text: "发布"
-          }} 
-          onClick={() => this.handlePublish()}
-        /> 
+        {save}
+        {publish}
         <IconBtn config={{
             icon: "icon-exit",
             iconTheme: "green",
@@ -83,10 +101,11 @@ class Navbar extends Component {
 
 const mapStateToProps = (state) => {
   const {article: {
-    editor
+    editor,
+    articles
   }, auth} = state;
 
-  return { editor: editor, auth: auth};
+  return { editor, articles, auth};
 }
 
 export default connect(mapStateToProps, { updateArticle, toggleShowArticle, logout })(Navbar);

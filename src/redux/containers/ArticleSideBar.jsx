@@ -48,7 +48,7 @@ class ArticleSideBar extends Component {
               <li key={item.id} style={{position:'relative'}}>
                 <IconBtn config={{
                     icon: item.publish ? "icon-leaf":"icon-quill",
-                    iconTheme: item.publish ? 'icon-green': 'icon-gray' 
+                    iconTheme: item.publish ? 'btn-green': 'btn-gray' 
                   }} 
                   style={{position:'absolute', left:'0', top: '50%',transform: 'translateY(-50%)',margin:'0 20px'}}
                 /> 
