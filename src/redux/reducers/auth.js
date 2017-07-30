@@ -10,7 +10,7 @@ import * as CONST from '../actions/const';
 const initState = {
     isFetching: false,
     token: localStorage.getItem('blog_token'),
-    isAuthenticated: localStorage.getItem('blog_token') ? true : false
+    isAuthenticated: localStorage.getItem('blog_token') !== undefined
 };
 
 const auth = (state=initState, action) => {

@@ -53,13 +53,14 @@ class EditArticle extends React.Component {
     }
 
     const {title, content} = this.props.article.editor;
-    const { showEditor, showPreview, showOrder } = this.props.editorState;
+    const { showEditor, showPreview, showOrder, showEditorNav } = this.props.editorState;
     return (
       <div className="wrap">
         <input type="text" className="title" value={title} onChange={this.handleTitleChange}/>
         <MarkdownEditor 
           height="calc(100% - 55px)"
           showEditor={showEditor}
+          showEditorNav={showEditorNav}
           showPreview={showPreview}
           showOrder={showOrder}
           value={content}

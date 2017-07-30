@@ -9,6 +9,7 @@ import * as CONST from '../actions/const';
 
 const initState = {
   showEditor: true,
+  showEditorNav: true,
   showPreview: true,
   showOrder: true,
   fullscreen: false
@@ -37,6 +38,11 @@ const editorState = (state = initState, action) => {
       return {
         ...state,
         fullscreen: action.fullscreen
+      }
+    case CONST.SHOW_EDITOR_NAV:
+      return {
+        ...state,
+        showEditorNav: !state.showEditorNav
       }
     default:
       return state;

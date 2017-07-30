@@ -25,3 +25,7 @@ export const fullscreenMode = (fullscreen) => ({
   type: CONST.FULLSCREEN_MODE,
   fullscreen
 });
+
+export const showEditorNav = () => ({
+  type: CONST.SHOW_EDITOR_NAV
+});

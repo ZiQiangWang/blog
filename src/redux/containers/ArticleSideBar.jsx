@@ -67,9 +67,16 @@ class ArticleSideBar extends Component {
             );
       });
     } else {
-      articlesNav = <div>文章列表</div>
+      articlesNav = (
+        <div className="article-list-loading">
+          <div className="rect1"></div>
+          <div className="rect2"></div>
+          <div className="rect3"></div>
+          <div className="rect4"></div>
+          <div className="rect5"></div>
+        </div>
+      );
     }
-
     return (
       <ul className={"sidenav " + (showArticleList ? "sidenav-width": "")}>
         <li onClick={() => this.handleCreateArticle()}>新建文章</li>

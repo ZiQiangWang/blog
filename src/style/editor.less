@@ -111,3 +111,44 @@
   z-index: 1000;
   font-size: 18px;
 }
+
+.article-list-loading {
+  
+  margin: 50px auto;
+  width: 50px;
+  height: 60px;
+  
+  div {
+    background-color: @color-green;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    margin: 0 2px;
+    animation: stretchdelay 1.2s infinite ease-in-out;
+  }
+  
+  .rect2 {
+    animation-delay: -1.1s;
+  }
+   
+  .rect3 {
+    animation-delay: -1.0s;
+  }
+   
+  .rect4 {
+    animation-delay: -0.9s;
+  }
+   
+  .rect5 {
+    animation-delay: -0.8s;
+  }
+
+  @keyframes stretchdelay {
+    0%, 40%, 100% {
+      transform: scaleY(0.4);
+    }  20% {
+      transform: scaleY(1.0);
+    }
+  }
+
+}

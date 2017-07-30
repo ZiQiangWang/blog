@@ -8,7 +8,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editOrPreview, splitMode, changeOrder, fullscreenMode } from '../actions/editorState';
+import { editOrPreview, splitMode, changeOrder, fullscreenMode, showEditorNav } from '../actions/editorState';
 import PropTypes from 'prop-types';
 import '../../style/components.less';
 import IconBtn from '../../component/IconBtn';
@@ -44,12 +44,23 @@ class Toolbar extends Component {
       this.props.editOrPreview(!showEditor, !showPreview);
     }
   }
+
+  handleShowEditorNav = () => {
+    this.props.showEditorNav();
+  }
   render() {
 
     const { showEditor, showPreview, fullscreen } = this.props;
 
     return (
       <div className="toolbar">
+        <IconBtn config={{
+            icon:  'icon-wrench',
+            iconTheme: 'btn-bluegray',
+            tips: '隐藏或显示markdown工具栏'
+          }}
+          onClick={() => this.handleShowEditorNav()}
+        />
         <IconBtn config={{
             icon:  'icon-enlarge',
             iconTheme: 'btn-bluegray',
@@ -87,4 +98,4 @@ const mapStateToProps = (state) => {
   return state.editorState; 
 }
 
-export default connect(mapStateToProps, { editOrPreview, splitMode, changeOrder, fullscreenMode })(Toolbar);
+export default connect(mapStateToProps, { editOrPreview, splitMode, changeOrder, fullscreenMode, showEditorNav })(Toolbar);

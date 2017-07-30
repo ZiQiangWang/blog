@@ -10,11 +10,12 @@ import EditArticle from '../redux/containers/EditArticle';
 import EditPage from '../redux/containers/EditPage';
 import NotFound from '../component/NotFound';
 import Login from '../redux/containers/Login';
-
+import Progress from '../redux/containers/Progress';
 const routes = ()=> {
   return (
     <HashRouter>
       <div>
+        <Progress />
         <Switch>
           <Route exact path='/' component={MainPage} />
           <Route path='/login' component={Login} />

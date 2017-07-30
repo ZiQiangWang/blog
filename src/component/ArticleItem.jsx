@@ -8,12 +8,8 @@
 
 import React, { Component } from 'react';
 import '../style/article.less';
-import { Link } from 'react-router-dom';
 
 class ArticleItem extends Component {
-    contextTypes: {
-        router: React.PropTypes.object
-    }
 
     handleClick = (articleId) => {
        console.log(this.context)

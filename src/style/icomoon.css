@@ -49,6 +49,9 @@
 .icon-shrink:before {
   content: "\e98a";
 }
+.icon-wrench:before {
+  content: "\e991";
+}
 .icon-leaf:before {
   content: "\e9a4";
 }
@@ -82,3 +85,4 @@
 .icon-share2:before {
   content: "\ea82";
 }
+

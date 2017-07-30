@@ -42,8 +42,7 @@ class EditPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { isAuthenticated } = state.auth;
-  return {isAuthenticated};
+  return {isAuthenticated: state.auth.isAuthenticated};
 }
 
 export default connect(mapStateToProps)(EditPage);

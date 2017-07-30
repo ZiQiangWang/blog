@@ -7,7 +7,6 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { articleList } from '../actions/article';
 import PropTypes from 'prop-types';
 import ArticleItem from '../../component/ArticleItem';
 import Intro from '../../component/Intro';
@@ -18,11 +17,7 @@ class BlogContainer extends Component {
         started: PropTypes.bool.isRequired
     };
 
-    componentDidMount() {
-        this.props.articleList();
-    }
-
-    handleClickBack() {
+    handleClickBack = () => {
         scrollTo(0,60);
     }
     render() {
@@ -47,4 +42,4 @@ const mapStateToProps = (state) => {
     return state;
 }
 
-export default connect(mapStateToProps, { articleList })(BlogContainer);
+export default connect(mapStateToProps)(BlogContainer);
