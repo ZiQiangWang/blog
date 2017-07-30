@@ -45,6 +45,7 @@ def delete_article_by_id(id):
 def update_article_by_id(id, data):
   data['update_time'] = util.time_stamp()
   article = Article.query.filter_by(id=id).first()
+  print "===========",article
   for key, value in data.items():
     setattr(article, key, value)
   db.session.commit()

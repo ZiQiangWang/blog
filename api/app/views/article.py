@@ -64,6 +64,7 @@ def update_article(articleId):
   params = json.loads(request.data)
   token = params['token']
   author_id = rds.get(token)
+  print "==========",articleId
   if not author_id:
     abort(401)
   del params['token']

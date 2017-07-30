@@ -15,15 +15,13 @@ import IconBtn from '../../component/IconBtn';
 class Navbar extends Component {
 
   handleSave = () => {
-    const {articles, current, auth: {token} } = this.props;
-    const article = articles[current];
-    this.props.updateArticle(token, article);
+    const {editor, auth: {token} } = this.props;
+    this.props.updateArticle(token, editor);
   }
 
   handlePublish = () => {
-    const { articles, current, auth: {token} } = this.props;
-    const article = articles[current];
-    this.props.updateArticle(token, {...article, publish: true});
+    const { token } = this.props.auth;
+    this.props.updateArticle(token, { publish: true });
   }
 
   handleToggleArticle = () => {
@@ -85,11 +83,10 @@ class Navbar extends Component {
 
 const mapStateToProps = (state) => {
   const {article: {
-    articles,
-    current
+    editor
   }, auth} = state;
 
-  return { articles: articles, current: current, auth: auth};
+  return { editor: editor, auth: auth};
 }
 
 export default connect(mapStateToProps, { updateArticle, toggleShowArticle, logout })(Navbar);

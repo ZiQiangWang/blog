@@ -12,16 +12,15 @@ export const toggleShowArticle = () => ({
     type: CONST.SHOW_ARTICLE_LIST
 });
 
-export const articleChange = (id, {title, content}) => ({
+export const articleChange = ( {title, content}) => ({
     type: CONST.ARTICLE_CHANGE,
-    id,
     title,
     content
 });
 
-export const articleSwitch = (id) => ({
+export const articleSwitch = (article) => ({
     type: CONST.ARTICLE_SWITCH,
-    id
+    article
 });
 
 export const articleList = (token) => ({
@@ -38,7 +37,7 @@ export const articleDetail = (articleId) => ({
     method: 'GET',
     endpoint: 'article/'+articleId
   },
-  success: (response, action) => articleSwitch(articleId)
+  success: (response, action) => articleSwitch(response)
 });
 
 export const createArticle = (title="新建", content="",token="#") => ({

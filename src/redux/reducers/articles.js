@@ -10,9 +10,9 @@ import {objFilter} from '../../utils/utils';
 const initState = {
     isFetching: false,
     showArticleList: true,
-    current: -1,
     articleIndex:undefined,
-    articles:{}
+    articles:{},
+    editor: {id:"", title:"", content:""}
 };
 
 const articles = (state=initState, action) => {
@@ -23,23 +23,23 @@ const articles = (state=initState, action) => {
             showArticleList: !state.showArticleList
         }
     case CONST.ARTICLE_CHANGE:
-        const {content, title} = action;
-        const art = state.articles[action.id];
+        const {title, content} = action;
         return {
             ...state,
-            articles: {
-                ...state.articles,
-                [action.id]: {
-                    ...art,
-                    content: content === undefined ? art.content :  content,
-                    title: title === undefined ? art.title : title 
-                }
+            editor: {
+                ...state.editor,
+                title: title === undefined ? state.editor.title : title,
+                content: content === undefined ? state.editor.content : content
             }
         }
     case CONST.ARTICLE_SWITCH:
         return {
             ...state,
-            current: action.id
+            editor: {
+                id: action.article.id,
+                title: action.article.title,
+                content: action.article.content
+            }
         }
     case CONST.ARTICLE_LIST_REQUEST:
         return {

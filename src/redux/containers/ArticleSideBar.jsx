@@ -24,7 +24,7 @@ class ArticleSideBar extends Component {
     if (articles[articleId] === undefined) {
       this.props.articleDetail(articleId);
     } else {
-      this.props.articleSwitch(articleId);
+      this.props.articleSwitch(articles[articleId]);
     }
   }
 

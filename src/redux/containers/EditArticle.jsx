@@ -31,29 +31,26 @@ class EditArticle extends React.Component {
   }
 
   handleArticleChange = (src) => {
-    const {current} = this.props;
-    this.props.articleChange(current, {content: src});
+    this.props.articleChange({content: src});
   }
 
   handleTitleChange = (event) => {
-    const {current} = this.props;
-    this.props.articleChange(current, {title: event.target.value});
+    this.props.articleChange({title: event.target.value});
   }
 
   shouldComponentUpdate(nextProps, nextState) {
 
-    const { articles, current } = nextProps;
+    const { id, content } = this.props.editor;
 
-    if (this.props.articles[current] === undefined || articles[current] === undefined) {
+    if (id != nextProps.editor.id) {
       return true;
     }
-
-    return this.props.articles[current].content == articles[current].content;
+    return nextProps.editor.content === content;
   }
 
   render() {
 
-    const { articles, current, isAuthenticated } = this.props;
+    const { isAuthenticated } = this.props;
 
     // 如果没有登录，则跳转到登录界面
     if (!isAuthenticated) {
@@ -69,8 +66,7 @@ class EditArticle extends React.Component {
       }
     }
 
-    const {title, content} = articles[current] === undefined ? {title:"", content:""} : articles[current];
-
+    const {title, content} = this.props.editor;
     let placehold;
 
     if (id === undefined) {
@@ -94,7 +90,6 @@ class EditArticle extends React.Component {
 
     return (
       <div className="wrap">
-
         <Navbar />
         <div className="wrap" style={{display: 'flex', height: "calc(100% - 48px)"}}>
           <ArticleSideBar />
