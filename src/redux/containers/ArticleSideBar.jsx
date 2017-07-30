@@ -19,6 +19,7 @@ class ArticleSideBar extends Component {
   }
 
   handleClickArticle = (articleId) => {
+
     const {articles} = this.props;
 
     if (articles[articleId] === undefined) {
