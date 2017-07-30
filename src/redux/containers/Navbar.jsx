@@ -65,7 +65,7 @@ class Navbar extends Component {
       }
       publish= (
         <IconBtn config={{
-            icon: "icon-share",
+            icon: "icon-share2",
             iconTheme: "btn-blue",
             text: publishText
           }} 

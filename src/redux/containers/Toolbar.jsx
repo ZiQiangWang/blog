@@ -6,48 +6,85 @@
  */
 
 
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { editOrPreview, splitMode, changeOrder, fullscreenMode } from '../actions/editorState';
 import PropTypes from 'prop-types';
 import '../../style/components.less';
 import IconBtn from '../../component/IconBtn';
+import { requestFullScreen, exitFullscreen, checkFull } from '../../utils/utils';
 
-const Toolbar = (props) => {
-  return (
-    <div className="toolbar">
-      { 
-        btnList.map((ele, index) => {
-          return (
-            <IconBtn 
-              key={index} 
-              className={ele.icon} 
-              tips={ele.tips}
-              iconTheme="bluegray"
-              onClick={() => props.onClick(ele.name)}
-            />
-          );
-        })
+class Toolbar extends Component {
+
+  handleFullscreen = () => {
+
+    if (checkFull()) {
+      exitFullscreen();
+      this.props.fullscreenMode(false);
+    } else {
+      requestFullScreen();
+      this.props.fullscreenMode(true);
     }
-    </div>
-  );
-}
-
-Toolbar.propTypes = {
-  onClick: PropTypes.func.isRequired
-}
-
-const btnList = [
-  {
-    name: 'showMode',
-    icon: 'icon-display',
-    tips: '切换阅读模式和编辑模式'
-  },{
-    name: 'fullscreen',
-    icon: 'icon-enlarge',
-    tips: '全屏模式'
-  },{
-    name: 'order',
-    icon: 'icon-tab',
-    tips: '交换左右视图'
   }
-];
-export default Toolbar;
+
+  handleSplit = () => {
+    this.props.splitMode();
+  }
+
+  handleChangeOrder = () => {
+    this.props.changeOrder();
+  }
+
+  handleEditOrPreview = () => {
+    const { showEditor, showPreview } = this.props;
+
+    if (showEditor && showPreview) {
+      this.props.editOrPreview(true, false);
+    } else {
+      this.props.editOrPreview(!showEditor, !showPreview);
+    }
+  }
+  render() {
+
+    const { showEditor, showPreview, fullscreen } = this.props;
+
+    return (
+      <div className="toolbar">
+        <IconBtn config={{
+            icon:  'icon-enlarge',
+            iconTheme: 'btn-bluegray',
+            tips: '全屏模式'
+          }}
+          onClick={() => this.handleFullscreen()}
+        />
+        <IconBtn config={{
+            icon: 'icon-contrast',
+            iconTheme: 'btn-bluegray',
+            tips: '分屏显示'
+          }}
+          onClick={() => this.handleSplit()}
+        />
+        <IconBtn config={{
+            icon: showEditor?'icon-pencil2':'icon-display',
+            iconTheme: 'btn-bluegray',
+            tips: '切换阅读模式和编辑模式'
+          }}
+          onClick={() => this.handleEditOrPreview()}
+        />
+        <IconBtn config={{
+            icon: 'icon-tab',
+            iconTheme: 'btn-bluegray',
+            tips: '交换左右视图'
+          }}
+          onClick={() => this.handleChangeOrder()}
+        />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return state.editorState; 
+}
+
+export default connect(mapStateToProps, { editOrPreview, splitMode, changeOrder, fullscreenMode })(Toolbar);

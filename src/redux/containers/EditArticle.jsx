@@ -34,31 +34,34 @@ class EditArticle extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
 
-    const { id, content } = this.props.editor;
+    const { id, content } = this.props.article.editor;
 
-    if (id != nextProps.editor.id) {
+    if (id != nextProps.article.editor.id) {
       return true;
     }
-    return nextProps.editor.content === content;
+    return nextProps.article.editor.content === content;
   }
 
   render() {
 
     // 对于无法匹配的文章id，跳转到edit页面
-    const {match: {params: {id}}, articleIndex} = this.props;
+    const {match: {params: {id}}, article:{articleIndex}} = this.props;
     if (id !== undefined && articleIndex !== undefined) {
       if (!articleIndex.some(item => item.id === id)) {
         return <Redirect to='/edit' />
       }
     }
 
-    const {title, content} = this.props.editor;
-
+    const {title, content} = this.props.article.editor;
+    const { showEditor, showPreview, showOrder } = this.props.editorState;
     return (
       <div className="wrap">
         <input type="text" className="title" value={title} onChange={this.handleTitleChange}/>
         <MarkdownEditor 
           height="calc(100% - 55px)"
+          showEditor={showEditor}
+          showPreview={showPreview}
+          showOrder={showOrder}
           value={content}
           onArticleChange={this.handleArticleChange}
         />
@@ -68,7 +71,9 @@ class EditArticle extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return state.article;
+  const { article, editorState } = state;
+
+  return { article, editorState };
 }
 
 export default connect(mapStateToProps, { articleDetail, articleChange })(EditArticle);

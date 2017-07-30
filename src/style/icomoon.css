@@ -31,8 +31,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-pencil2:before {
+  content: "\e906";
+}
 .icon-quill:before {
   content: "\e907";
+}
+.icon-display:before {
+  content: "\e956";
 }
 .icon-floppy-disk:before {
   content: "\e962";
@@ -55,6 +61,9 @@
 .icon-sphere:before {
   content: "\e9c9";
 }
+.icon-contrast:before {
+  content: "\e9d5";
+}
 .icon-enter:before {
   content: "\ea13";
 }
@@ -67,6 +76,9 @@
 .icon-arrow-down2:before {
   content: "\ea3e";
 }
-.icon-share:before {
-  content: "\ea7d";
+.icon-tab:before {
+  content: "\ea45";
+}
+.icon-share2:before {
+  content: "\ea82";
 }

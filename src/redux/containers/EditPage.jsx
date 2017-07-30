@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import EditArticle from './EditArticle';
 import ArticleSideBar from './ArticleSideBar';
 import Navbar from './Navbar';
+import Toolbar from './Toolbar';
 
 class EditPage extends Component {
   render() {
@@ -30,6 +31,7 @@ class EditPage extends Component {
     return (
       <div className="wrap">
         <Navbar />
+        <Toolbar />
         <div className="wrap" style={{display: 'flex', height: "calc(100% - 48px)"}}>
           <ArticleSideBar />
           { editor }

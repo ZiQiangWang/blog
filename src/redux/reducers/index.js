@@ -8,7 +8,8 @@ import { combineReducers } from 'redux';
 import article from './articles';
 import auth from './auth';
 import fetchState from './fetchState';
+import editorState from './editorState';
 
-const rootReducer = combineReducers({article, auth, fetchState});
+const rootReducer = combineReducers({article, auth, editorState, fetchState});
 
 export default rootReducer;
