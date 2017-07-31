@@ -5,10 +5,10 @@
  */
 
 
-const fetchState = (state={message: "", status: 200}, action) => {
-  const { type, error, status } = action;
-  if (error || status) {
-    return {message: error, status: status};
+const fetchState = (state={message: "", status: 200, isFetching: false}, action) => {
+  const { error, statusm, isFetching } = action;
+  if (error !== undefined || status !== undefined || isFetching !== undefined) {
+    return {message: error, status, isFetching};
   }
 
   return state;

@@ -8,6 +8,7 @@
 import fetch from 'isomorphic-fetch';
 import { CALL_API } from '../middleware/api';
 import * as CONST from './const';
+import { resetEditor } from './article';
 
 export const loseAuth = () => ({
   type: CONST.LOSE_AUTH
@@ -30,6 +31,9 @@ export const logout = (token) => ({
     endpoint: 'auth/delete',
     params: {token}
   },
-  success: (response) => (dispatch, getState) => localStorage.removeItem('blog_token')
+  success: (response) => (dispatch, getState) => {
+    localStorage.removeItem('blog_token');
+    dispatch(resetEditor());
+  }
 });
 

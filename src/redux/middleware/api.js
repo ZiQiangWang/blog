@@ -64,13 +64,14 @@ export default store => next => action => {
 
   const { success, failure } = action; 
 
-  next(actionWith({ type: requestType }));
+  next(actionWith({ type: requestType, isFetching: true }));
   return callApi(endpoint, method, params).then(
     json => {
       next(actionWith({
         response: json,
         status: 200,
-        type: successType
+        type: successType,
+        isFetching: false
       }));
       success && next(success(json, action));
     }
@@ -80,7 +81,8 @@ export default store => next => action => {
       next(actionWith({
         error: error.message || 'Something bad happened',
         status: error.status, 
-        type: failureType
+        type: failureType,
+        isFetching: false
       }));
       failure && next(failure(error, action));
 

@@ -8,7 +8,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../style/header.less';
-import { requestFullScreen, exitFullscreen, checkFull } from '../utils/utils';
+import { requestFullScreen, exitFullscreen, checkFull } from '../utils/fullscreen';
 
 class HeaderTop extends Component {
     static propTypes = {

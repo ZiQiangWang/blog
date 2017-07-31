@@ -8,7 +8,7 @@ import reducer from '../reducers';
 import React, { Component }from 'react';
 import HeaderTop from '../../component/HeaderTop';
 import BlogContainer from './BlogContainer';
-import { scrollTo, currentYPosition } from '../../utils/utils';
+import { scrollTo, currentYPosition } from '../../utils/scrollTo';
 
 class MainPage extends Component {
 

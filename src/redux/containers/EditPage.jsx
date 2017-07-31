@@ -13,6 +13,7 @@ import Navbar from './Navbar';
 import Toolbar from './Toolbar';
 
 class EditPage extends Component {
+
   render() {
 
     const { isAuthenticated, match:{isExact} } = this.props;

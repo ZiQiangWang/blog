@@ -9,10 +9,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editOrPreview, splitMode, changeOrder, fullscreenMode, showEditorNav } from '../actions/editorState';
+import { toggleShowArticle } from '../actions/article';
 import PropTypes from 'prop-types';
 import '../../style/components.less';
 import IconBtn from '../../component/IconBtn';
-import { requestFullScreen, exitFullscreen, checkFull } from '../../utils/utils';
+import { requestFullScreen, exitFullscreen, checkFull } from '../../utils/fullscreen';
 
 class Toolbar extends Component {
 
@@ -48,12 +49,24 @@ class Toolbar extends Component {
   handleShowEditorNav = () => {
     this.props.showEditorNav();
   }
+
+  handleToggleArticle = () => {
+    this.props.toggleShowArticle();
+  }
+
   render() {
 
     const { showEditor, showPreview, fullscreen } = this.props;
 
     return (
       <div className="toolbar">
+        <IconBtn config={{
+            icon: "icon-menu",
+            iconTheme: "btn-bluegray",
+            tips: "文章列表"
+          }} 
+          onClick={() => this.handleToggleArticle()}
+        /> 
         <IconBtn config={{
             icon:  'icon-wrench',
             iconTheme: 'btn-bluegray',
@@ -98,4 +111,4 @@ const mapStateToProps = (state) => {
   return state.editorState; 
 }
 
-export default connect(mapStateToProps, { editOrPreview, splitMode, changeOrder, fullscreenMode, showEditorNav })(Toolbar);
+export default connect(mapStateToProps, { toggleShowArticle, editOrPreview, splitMode, changeOrder, fullscreenMode, showEditorNav })(Toolbar);

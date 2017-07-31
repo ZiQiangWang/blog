@@ -12,13 +12,12 @@ class Progress extends Component {
 
 
   render() {
-    
     return <ReactProgress show={this.props.isFetching}/>
   }
 }
 
 const mapStateToProps = (state) => {
-  return {isFetching: state.article.isFetching};
+  return {isFetching: state.fetchState.isFetching};
 }
 
 export default connect(mapStateToProps)(Progress);

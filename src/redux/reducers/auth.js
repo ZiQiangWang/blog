@@ -10,11 +10,10 @@ import * as CONST from '../actions/const';
 const initState = {
     isFetching: false,
     token: localStorage.getItem('blog_token'),
-    isAuthenticated: localStorage.getItem('blog_token') !== undefined
+    isAuthenticated: localStorage.getItem('blog_token') !== null
 };
 
 const auth = (state=initState, action) => {
-
   switch (action.type) {
     case CONST.LOSE_AUTH:
       return {

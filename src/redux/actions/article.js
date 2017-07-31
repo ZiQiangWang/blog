@@ -68,3 +68,6 @@ export const deleteArticle = (token="#",id) => ({
   success: (response, action) => articleSwitch(-1)
 });
 
+export const resetEditor = () => ({
+  type: CONST.RESET_EDITOR
+});

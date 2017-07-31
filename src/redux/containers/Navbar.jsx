@@ -6,7 +6,7 @@
 
 
 import React,{Component} from 'react';
-import { updateArticle, toggleShowArticle } from '../actions/article';
+import { updateArticle } from '../actions/article';
 import { logout } from '../actions/auth';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -31,10 +31,6 @@ class Navbar extends Component {
         this.props.updateArticle(token,{...editor, publish: true});
       }
     }
-  }
-
-  handleToggleArticle = () => {
-    this.props.toggleShowArticle();
   }
 
   render() {
@@ -77,13 +73,15 @@ class Navbar extends Component {
     const {token} = this.props.auth;
     return (
       <div className="navbar">
-        <IconBtn config={{
-            icon: "icon-menu",
-            iconTheme: "green",
-            text: "文章列表"
-          }} 
-          onClick={() => this.handleToggleArticle()}
-        /> 
+        <Link to="/">
+          <IconBtn config={{
+              icon: "icon-home",
+              iconTheme: "green"
+            }} 
+            style={{padding:0}}
+          /> 
+        </Link>
+        <span style={{width:'100%'}}></span>
         {save}
         {publish}
         <IconBtn config={{
@@ -108,4 +106,4 @@ const mapStateToProps = (state) => {
   return { editor, articles, auth};
 }
 
-export default connect(mapStateToProps, { updateArticle, toggleShowArticle, logout })(Navbar);
+export default connect(mapStateToProps, { updateArticle, logout })(Navbar);

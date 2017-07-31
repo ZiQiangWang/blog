@@ -17,6 +17,11 @@ const initState = {
 
 const articles = (state=initState, action) => {
   switch(action.type) {
+    case CONST.RESET_EDITOR:
+        return {
+            ...state,
+            editor: {id:"", title:"", content:"", publish: undefined}
+        }
     case CONST.SHOW_ARTICLE_LIST:
         return {
             ...state,
