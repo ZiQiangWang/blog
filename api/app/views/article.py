@@ -26,7 +26,7 @@ def article_list():
     abort(500)
   return jsonify(articles)
 
-@article.route('/page/<num>', methods=['GET'])
+@article.route('/page/<int:num>', methods=['GET'])
 def article_page(num):
   articles = db_util.get_articles_of_page(num)
   return jsonify(articles)

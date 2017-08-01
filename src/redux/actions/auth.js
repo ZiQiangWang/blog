@@ -5,13 +5,12 @@
  * @date    2017-07-26 18:23:10
  */
 
-import fetch from 'isomorphic-fetch';
 import { CALL_API } from '../middleware/api';
 import * as CONST from './const';
 import { resetEditor } from './article';
 
 export const loseAuth = () => ({
-  type: CONST.LOSE_AUTH
+  type: CONST.LOSE_AUTH,
 });
 
 export const login = (name, password) => ({
@@ -19,21 +18,21 @@ export const login = (name, password) => ({
     types: [CONST.LOGIN_REQUEST, CONST.LOGIN_SUCCESS, CONST.LOGIN_FAILURE],
     method: 'POST',
     endpoint: 'auth/create',
-    params: {name, password}
+    params: { name, password },
   },
-  success: (response) => (dispatch, getState) => localStorage.setItem('blog_token', response.token)
+  success: response => (dispatch, getState) => localStorage.setItem('blog_token', response.token),
 });
 
-export const logout = (token) => ({
+export const logout = token => ({
   [CALL_API]: {
     types: [CONST.LOGOUT_REQUEST, CONST.LOGOUT_SUCCESS, CONST.LOGOUT_FAILUARE],
     method: 'DELETE',
     endpoint: 'auth/delete',
-    params: {token}
+    params: { token },
   },
-  success: (response) => (dispatch, getState) => {
+  success: response => (dispatch, getState) => {
     localStorage.removeItem('blog_token');
     dispatch(resetEditor());
-  }
+  },
 });
 

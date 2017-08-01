@@ -6,16 +6,16 @@
  */
 
 import React, { Component } from 'react';
-import { MarkdownEditor } from 'react-markdown-preview-editor';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { articleDetail, articleChange } from '../actions/article';
-
+import { MarkdownEditor } from 'react-markdown-preview-editor';
 import 'react-markdown-preview-editor/lib/css/style.css';
 import 'highlight.js/styles/github.css';
+import { articleDetail, articleChange } from '../actions/article';
 
-class EditArticle extends React.Component {
 
+class EditArticle extends Component {
   componentWillMount() {
     const { match } = this.props;
     const articleId = match.params.id;
@@ -24,40 +24,38 @@ class EditArticle extends React.Component {
     }
   }
 
-  handleArticleChange = (src) => {
-    this.props.articleChange({content: src});
-  }
-
-  handleTitleChange = (event) => {
-    this.props.articleChange({title: event.target.value});
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-
+  shouldComponentUpdate(nextProps) {
     const { id, content } = this.props.article.editor;
 
-    if (id != nextProps.article.editor.id) {
+    if (id !== nextProps.article.editor.id) {
       return true;
     }
     return nextProps.article.editor.content === content;
   }
 
-  render() {
+  handleArticleChange = (src) => {
+    this.props.articleChange({ content: src });
+  }
 
+  handleTitleChange = (event) => {
+    this.props.articleChange({ title: event.target.value });
+  }
+
+  render() {
     // 对于无法匹配的文章id，跳转到edit页面
-    const {match: {params: {id}}, article:{articleIndex}} = this.props;
+    const { match: { params: { id } }, article: { articleIndex } } = this.props;
     if (id !== undefined && articleIndex !== undefined) {
       if (!articleIndex.some(item => item.id === id)) {
-        return <Redirect to='/edit' />
+        return <Redirect to="/edit" />;
       }
     }
 
-    const {title, content} = this.props.article.editor;
+    const { title, content } = this.props.article.editor;
     const { showEditor, showPreview, showOrder, showEditorNav } = this.props.editorState;
     return (
       <div className="wrap">
-        <input type="text" className="title" value={title} onChange={this.handleTitleChange}/>
-        <MarkdownEditor 
+        <input type="text" className="title" value={title} onChange={this.handleTitleChange} />
+        <MarkdownEditor
           height="calc(100% - 55px)"
           showEditor={showEditor}
           showEditorNav={showEditorNav}
@@ -71,10 +69,17 @@ class EditArticle extends React.Component {
   }
 }
 
+EditArticle.propTypes = {
+  article: PropTypes.object.isRequired,
+  editorState: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  articleDetail: PropTypes.func.isRequired,
+  articleChange: PropTypes.func.isRequired,
+};
 const mapStateToProps = (state) => {
   const { article, editorState } = state;
 
   return { article, editorState };
-}
+};
 
 export default connect(mapStateToProps, { articleDetail, articleChange })(EditArticle);

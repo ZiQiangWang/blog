@@ -4,20 +4,17 @@
  * @date    2017-07-30 21:51:27
  */
 
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ReactProgress from './ReactProgress';
+import ReactProgress from 'react-prog-bar';
 
-class Progress extends Component {
+const Progress = props => <ReactProgress trigger={props.isFetching} top />;
 
+const mapStateToProps = state => ({ isFetching: state.fetchState.isFetching });
 
-  render() {
-    return <ReactProgress show={this.props.isFetching}/>
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {isFetching: state.fetchState.isFetching};
-}
+Progress.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+};
 
 export default connect(mapStateToProps)(Progress);

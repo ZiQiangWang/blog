@@ -6,21 +6,18 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { articleList, articleDetail, articleSwitch, createArticle, deleteArticle } from '../actions/article';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { articleList, articleDetail, articleSwitch, createArticle, deleteArticle } from '../actions/article';
 import IconBtn from '../../component/IconBtn';
 
 class ArticleSideBar extends Component {
-  
   componentWillMount() {
-    if(this.props.articleIndex === undefined) {
-      this.props.articleList(this.props.token);
-    }
+    this.props.articleList(this.props.token);
   }
 
   handleClickArticle = (articleId) => {
-
-    const {articles} = this.props;
+    const { articles } = this.props;
 
     if (articles[articleId] === undefined) {
       this.props.articleDetail(articleId);
@@ -30,42 +27,42 @@ class ArticleSideBar extends Component {
   }
 
   handleCreateArticle = () => {
-    this.props.createArticle("无标题文章","",this.props.token)
+    this.props.createArticle('无标题文章', '', this.props.token);
   }
 
   handleDeleteArticle = (id) => {
-    this.props.deleteArticle(this.props.token,id);
+    this.props.deleteArticle(this.props.token, id);
   }
 
   render() {
-
     const { articleIndex, showArticleList } = this.props;
 
     let articlesNav;
     if (articleIndex) {
-      articlesNav = articleIndex.map((item) => {
-            return (
-              <li key={item.id} style={{position:'relative'}}>
-                <IconBtn config={{
-                    icon: item.publish ? "icon-leaf":"icon-quill",
-                    iconTheme: item.publish ? 'btn-green': 'btn-gray' 
-                  }} 
-                  style={{position:'absolute', left:'0', top: '50%',transform: 'translateY(-50%)',margin:'0 20px'}}
-                /> 
-                <NavLink 
-                  activeClassName="nav-link"
-                  to={"/edit/"+item.id} 
-                  onClick={() => this.handleClickArticle(item.id)}>{item.title}
-                </NavLink>
-                <IconBtn config={{
-                    icon: "icon-bin"
-                  }} 
-                  style={{position:'absolute', right:'0', top: '50%',transform: 'translateY(-50%)',display:'none',fontSize:'16px'}}
-                  onClick={() => this.handleDeleteArticle(item.id)}
-                /> 
-              </li>
-            );
-      });
+      articlesNav = articleIndex.map(item => (
+        <li key={item.id} style={{ position: 'relative' }}>
+          <IconBtn
+            config={{
+              icon: item.publish ? 'icon-leaf' : 'icon-quill',
+              iconTheme: item.publish ? 'btn-green' : 'btn-gray',
+            }}
+            style={{ position: 'absolute', left: '0', top: '50%', transform: 'translateY(-50%)', margin: '0 20px' }}
+          />
+          <NavLink
+            activeClassName="nav-link"
+            to={`/edit/${item.id}`}
+            onClick={() => this.handleClickArticle(item.id)}
+          >{item.title}
+          </NavLink>
+          <IconBtn
+            config={{
+              icon: 'icon-bin',
+            }}
+            style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)', display: 'none', fontSize: '16px' }}
+            onClick={() => this.handleDeleteArticle(item.id)}
+          />
+        </li>
+      ));
     } else {
       articlesNav = (
         <div className="article-list-loading">
@@ -77,8 +74,9 @@ class ArticleSideBar extends Component {
         </div>
       );
     }
+    /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */ 
     return (
-      <ul className={"sidenav " + (showArticleList ? "sidenav-width": "")}>
+      <ul className={`sidenav ${showArticleList ? 'sidenav-width' : ''}`}>
         <li onClick={() => this.handleCreateArticle()}>新建文章</li>
         { articlesNav }
       </ul>
@@ -86,9 +84,21 @@ class ArticleSideBar extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-    const { article , auth: {token}} = state;
-    return {...article, token};
-}
+ArticleSideBar.propTypes = {
+  articleIndex: PropTypes.array.isRequired,
+  articles: PropTypes.object.isRequired,
+  showArticleList: PropTypes.bool.isRequired,
+  token: PropTypes.string.isRequired,
+  articleList: PropTypes.func.isRequired,
+  articleDetail: PropTypes.func.isRequired,
+  articleSwitch: PropTypes.func.isRequired,
+  createArticle: PropTypes.func.isRequired,
+  deleteArticle: PropTypes.func.isRequired,
+};
 
-export default connect(mapStateToProps,{articleList, articleDetail, articleSwitch, createArticle, deleteArticle})(ArticleSideBar);
+const mapStateToProps = (state) => {
+  const { article, auth: { token } } = state;
+  return { ...article, token };
+};
+
+export default connect(mapStateToProps, { articleList, articleDetail, articleSwitch, createArticle, deleteArticle })(ArticleSideBar);

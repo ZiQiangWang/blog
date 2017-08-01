@@ -8,29 +8,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const IconBtn = (props) => {
-  const config = props.config;
+  const { config, style, ...rest } = props;
 
   return (
-    <a 
-      className={ "btn-icon "+(config.iconTheme || "default") } 
-      onClick={ props.onClick } 
-      title={ config.tips }
-      style={props.style}>
+    <div
+      className={`btn-icon ${config.iconTheme || 'default'}`}
+      title={config.tips}
+      style={style}
+      {...rest}
+    >
       <span className={config.icon}></span>
       {config.text}
-    </a>
-  )
-}
+    </div>
+  );
+};
 
+IconBtn.defaultProps = {
+  style: {},
+};
 IconBtn.propTypes = {
-    onClick: PropTypes.func,
-    config: PropTypes.shape({
-      icon: PropTypes.string,
-      iconTheme: PropTypes.string,
-      tips: PropTypes.string,
-      text: PropTypes.string
-    }),
-    style: PropTypes.object
+  config: PropTypes.shape({
+    icon: PropTypes.string,
+    iconTheme: PropTypes.string,
+    tips: PropTypes.string,
+    text: PropTypes.string,
+  }).isRequired,
+  style: PropTypes.object,
 };
 
 

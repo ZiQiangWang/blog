@@ -12,42 +12,42 @@ const initState = {
   showEditorNav: true,
   showPreview: true,
   showOrder: true,
-  fullscreen: false
-}
+  fullscreen: false,
+};
 
 const editorState = (state = initState, action) => {
   switch (action.type) {
-    case CONST.EDIT_OR_PREVIEW:
-      return {
-        ...state,
-        showEditor: action.showEditor,
-        showPreview: action.showPreview
-      }
-    case CONST.SPLIT_MODE:
-      return {
-        ...state,
-        showEditor: true,
-        showPreview: true
-      }
-    case CONST.CHANGE_ORDER:
-      return {
-        ...state,
-        showOrder: !state.showOrder
-      }
-    case CONST.FULLSCREEN_MODE:
-      return {
-        ...state,
-        fullscreen: action.fullscreen
-      }
-    case CONST.SHOW_EDITOR_NAV:
-      return {
-        ...state,
-        showEditorNav: !state.showEditorNav
-      }
-    default:
-      return state;
+  case CONST.EDIT_OR_PREVIEW:
+    return {
+      ...state,
+      showEditor: action.showEditor,
+      showPreview: action.showPreview,
+    };
+  case CONST.SPLIT_MODE:
+    return {
+      ...state,
+      showEditor: true,
+      showPreview: true,
+    };
+  case CONST.CHANGE_ORDER:
+    return {
+      ...state,
+      showOrder: !state.showOrder,
+    };
+  case CONST.FULLSCREEN_MODE:
+    return {
+      ...state,
+      fullscreen: action.fullscreen,
+    };
+  case CONST.SHOW_EDITOR_NAV:
+    return {
+      ...state,
+      showEditorNav: !state.showEditorNav,
+    };
+  default:
+    return state;
   }
-}
+};
 
 export default editorState;
 

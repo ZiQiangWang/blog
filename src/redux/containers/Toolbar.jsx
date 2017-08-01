@@ -7,18 +7,16 @@
 
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { editOrPreview, splitMode, changeOrder, fullscreenMode, showEditorNav } from '../actions/editorState';
 import { toggleShowArticle } from '../actions/article';
-import PropTypes from 'prop-types';
 import '../../style/components.less';
 import IconBtn from '../../component/IconBtn';
 import { requestFullScreen, exitFullscreen, checkFull } from '../../utils/fullscreen';
 
 class Toolbar extends Component {
-
   handleFullscreen = () => {
-
     if (checkFull()) {
       exitFullscreen();
       this.props.fullscreenMode(false);
@@ -55,50 +53,55 @@ class Toolbar extends Component {
   }
 
   render() {
-
-    const { showEditor, showPreview, fullscreen } = this.props;
+    const { showEditor } = this.props;
 
     return (
       <div className="toolbar">
-        <IconBtn config={{
-            icon: "icon-menu",
-            iconTheme: "btn-bluegray",
-            tips: "文章列表"
-          }} 
-          onClick={() => this.handleToggleArticle()}
-        /> 
-        <IconBtn config={{
-            icon:  'icon-wrench',
+        <IconBtn
+          config={{
+            icon: 'icon-menu',
             iconTheme: 'btn-bluegray',
-            tips: '隐藏或显示markdown工具栏'
+            tips: '文章列表',
+          }}
+          onClick={() => this.handleToggleArticle()}
+        />
+        <IconBtn
+          config={{
+            icon: 'icon-wrench',
+            iconTheme: 'btn-bluegray',
+            tips: '隐藏或显示markdown工具栏',
           }}
           onClick={() => this.handleShowEditorNav()}
         />
-        <IconBtn config={{
-            icon:  'icon-enlarge',
+        <IconBtn
+          config={{
+            icon: 'icon-enlarge',
             iconTheme: 'btn-bluegray',
-            tips: '全屏模式'
+            tips: '全屏模式',
           }}
           onClick={() => this.handleFullscreen()}
         />
-        <IconBtn config={{
+        <IconBtn
+          config={{
             icon: 'icon-contrast',
             iconTheme: 'btn-bluegray',
-            tips: '分屏显示'
+            tips: '分屏显示',
           }}
           onClick={() => this.handleSplit()}
         />
-        <IconBtn config={{
-            icon: showEditor?'icon-pencil2':'icon-display',
+        <IconBtn
+          config={{
+            icon: showEditor ? 'icon-pencil2' : 'icon-display',
             iconTheme: 'btn-bluegray',
-            tips: '切换阅读模式和编辑模式'
+            tips: '切换阅读模式和编辑模式',
           }}
           onClick={() => this.handleEditOrPreview()}
         />
-        <IconBtn config={{
+        <IconBtn
+          config={{
             icon: 'icon-tab',
             iconTheme: 'btn-bluegray',
-            tips: '交换左右视图'
+            tips: '交换左右视图',
           }}
           onClick={() => this.handleChangeOrder()}
         />
@@ -107,8 +110,24 @@ class Toolbar extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return state.editorState; 
-}
+Toolbar.propTypes = {
+  showEditor: PropTypes.bool.isRequired,
+  showPreview: PropTypes.bool.isRequired,
+  showEditorNav: PropTypes.func.isRequired,
+  toggleShowArticle: PropTypes.func.isRequired,
+  editOrPreview: PropTypes.func.isRequired,
+  splitMode: PropTypes.func.isRequired,
+  changeOrder: PropTypes.func.isRequired,
+  fullscreenMode: PropTypes.func.isRequired,
+};
 
-export default connect(mapStateToProps, { toggleShowArticle, editOrPreview, splitMode, changeOrder, fullscreenMode, showEditorNav })(Toolbar);
+const mapStateToProps = state => state.editorState;
+
+export default connect(mapStateToProps, {
+  toggleShowArticle,
+  editOrPreview,
+  splitMode,
+  changeOrder,
+  fullscreenMode,
+  showEditorNav,
+})(Toolbar);

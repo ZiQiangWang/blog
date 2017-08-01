@@ -9,7 +9,8 @@ import article from './articles';
 import auth from './auth';
 import fetchState from './fetchState';
 import editorState from './editorState';
+import blog from './blog';
 
-const rootReducer = combineReducers({article, auth, editorState, fetchState});
+const rootReducer = combineReducers({ blog, article, auth, editorState, fetchState });
 
 export default rootReducer;

@@ -16,7 +16,7 @@ def get_article_by_id(id):
 
 # article page
 def get_articles_of_page(page):
-  articles = Article.query.order_by(Article.update_time.desc()).paginate(page,per_page=10,error_out=False)
+  articles = Article.query.filter_by(publish=True).order_by(Article.update_time.desc()).paginate(page,per_page=10,error_out=False)
   return [ article.to_dict() for article in articles.items ]
 
 # article list

@@ -9,23 +9,23 @@ import * as CONST from './const';
 
 export const editOrPreview = (showEditor, showPreview) => ({
   type: CONST.EDIT_OR_PREVIEW,
-  showEditor, 
-  showPreview
+  showEditor,
+  showPreview,
 });
 
 export const splitMode = () => ({
-  type: CONST.SPLIT_MODE
+  type: CONST.SPLIT_MODE,
 });
 
 export const changeOrder = () => ({
-  type: CONST.CHANGE_ORDER
+  type: CONST.CHANGE_ORDER,
 });
 
-export const fullscreenMode = (fullscreen) => ({
+export const fullscreenMode = fullscreen => ({
   type: CONST.FULLSCREEN_MODE,
-  fullscreen
+  fullscreen,
 });
 
 export const showEditorNav = () => ({
-  type: CONST.SHOW_EDITOR_NAV
+  type: CONST.SHOW_EDITOR_NAV,
 });
