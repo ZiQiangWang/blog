@@ -16,7 +16,7 @@ const ArticleAbstract = (props) => {
   return (
     <section className="article-abstract">
       <div className="container">
-        <h2><Link to={`/edit/${article.id}`}>{article.title}</Link></h2>
+        <h2><Link to={`/article/${article.id}`}>{article.title}</Link></h2>
         <p>{article.content.slice(0, 120)}</p>
         <div className="info">
           <span>作者：{article.author}</span>

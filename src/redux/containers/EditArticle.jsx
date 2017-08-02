@@ -9,8 +9,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { MarkdownEditor } from 'react-markdown-preview-editor';
-import 'react-markdown-preview-editor/lib/css/style.css';
+import { MarkdownEditor } from 'react-mark-editor';
+import 'react-mark-editor/lib/css/style.css';
 import 'highlight.js/styles/github.css';
 import { articleDetail, articleChange } from '../actions/article';
 

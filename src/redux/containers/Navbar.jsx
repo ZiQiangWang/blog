@@ -77,7 +77,7 @@ class Navbar extends Component {
               icon: 'icon-home',
               iconTheme: 'green',
             }}
-            style={{ padding: 0 }}
+            style={{ paddingLeft: '20px', fontSize: '24px' }}
           />
         </Link>
         <span style={{ width: '100%' }}></span>

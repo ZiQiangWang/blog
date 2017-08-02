@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import { startBlog } from '../actions/article';
 import IconBtn from '../../component/IconBtn';
 import { requestFullScreen, exitFullscreen, checkFull } from '../../utils/fullscreen';
-import '../../style/header.less';
 
 class HeaderTop extends Component {
     handleFullscreen = () => {
@@ -26,6 +25,10 @@ class HeaderTop extends Component {
       scrollTo(1, 5);
     }
 
+    handleGithub = () => {
+      window.open('https://github.com/ZiQiangWang/blog');
+    }
+
     render() {
     const { started } = this.props;
     return (
@@ -38,6 +41,7 @@ class HeaderTop extends Component {
           <span className="center"></span>
           <IconBtn
             config={{ icon: 'icon-sphere', text: 'Github' }}
+            onClick={() => this.handleGithub()}
           />
         </div>
         <div className="header-background" style={{ transform: started ? 'translateY(-25%)' : 'translateY(0%)' }}>

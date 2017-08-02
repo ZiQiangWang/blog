@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { editOrPreview, splitMode, changeOrder, fullscreenMode, showEditorNav } from '../actions/editorState';
 import { toggleShowArticle } from '../actions/article';
-import '../../style/components.less';
 import IconBtn from '../../component/IconBtn';
 import { requestFullScreen, exitFullscreen, checkFull } from '../../utils/fullscreen';
 

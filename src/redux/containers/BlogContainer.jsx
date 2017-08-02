@@ -12,7 +12,6 @@ import { pageArticle } from '../actions/article';
 import ArticleAbstract from '../../component/ArticleAbstract';
 import Intro from '../../component/Intro';
 import { scrollTo } from '../../utils/scrollTo';
-import '../../style/components.less';
 
 class BlogContainer extends Component {
     componentWillMount = () => {

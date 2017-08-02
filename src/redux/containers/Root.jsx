@@ -12,6 +12,8 @@ import { Provider } from 'react-redux';
 import Router from '../../router';
 import '../../style/common.less';
 import '../../style/editor.less';
+import '../../style/components.less';
+import '../../style/header.less';
 
 const Root = ({ store }) => (
   <Provider store={store}>

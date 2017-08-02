@@ -6,6 +6,7 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import MainPage from '../redux/containers/MainPage';
+import ArticleDetail from '../component/ArticleDetail';
 import EditPage from '../redux/containers/EditPage';
 import NotFound from '../component/NotFound';
 import Login from '../redux/containers/Login';
@@ -19,6 +20,7 @@ const routes = () => (
         <Route exact path="/" component={MainPage} />
         <Route path="/login" component={Login} />
         <Route path="/edit" component={EditPage} />
+        <Route path="/article/:id" component={ArticleDetail} />
         <Route component={NotFound} />
       </Switch>
     </div>
