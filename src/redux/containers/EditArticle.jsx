@@ -36,20 +36,20 @@ class EditArticle extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    const { id, content } = this.props.article.editor;
+  // shouldComponentUpdate(nextProps) {
+  //   const { id, content } = this.props.article.editor;
 
-    if (id !== nextProps.article.editor.id) {
-      return true;
-    }
-    return nextProps.article.editor.content === content;
-  }
+  //   if (id !== nextProps.article.editor.id) {
+  //     return true;
+  //   }
+  //   return nextProps.article.editor.content === content;
+  // }
 
   handleArticleChange = (src) => {
-    const { content } = this.props.article.editor;
-    if (src !== content) {
-      this.props.articleChange({ content: src });
-    }
+    this.props.articleChange({ content: src });
+    // const { content } = this.props.article.editor;
+    // if (src !== content) {
+    // }
   }
 
   handleTitleChange = (event) => {
@@ -57,7 +57,19 @@ class EditArticle extends Component {
   }
 
   render() {
-    const { title, content, publish } = this.props.article.editor;
+    console.log("================")
+    
+    const { articles, articleIndex } = this.props.article;
+    const id = this.props.match.params.id;
+    if (!articleIndex.some( item => item.id === id )) {
+      return <Redirect to="/edit"/>;
+
+    }
+    if ( articles[id] === undefined) {
+      return <h1>加载中</h1>;
+    }
+
+    const { title, content, publish } = articles[id];
     const { showEditor, showPreview, showOrder, showEditorNav } = this.props.editorState;
     return (
       <div className="wrap">

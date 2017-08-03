@@ -6,7 +6,7 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import MainPage from '../redux/containers/MainPage';
-import ArticleDetail from '../component/ArticleDetail';
+import ArticleDetail from '../redux/containers/ArticleDetail';
 import EditPage from '../redux/containers/EditPage';
 import NotFound from '../component/NotFound';
 import Login from '../redux/containers/Login';

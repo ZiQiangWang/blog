@@ -20,7 +20,7 @@ const ArticleAbstract = (props) => {
         <p>{article.content.slice(0, 120)}</p>
         <div className="info">
           <span>作者：{article.author}</span>
-          <span>时间：{article.update_time}</span>
+          <span>时间：{new Date(article.update_time).toDateString()}</span>
         </div>
       </div>
     </section>

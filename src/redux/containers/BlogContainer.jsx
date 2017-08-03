@@ -14,7 +14,7 @@ import Intro from '../../component/Intro';
 import { scrollTo } from '../../utils/scrollTo';
 
 class BlogContainer extends Component {
-    componentWillMount = () => {
+    componentDidMount = () => {
       this.props.pageArticle(1);
     }
 
@@ -22,13 +22,13 @@ class BlogContainer extends Component {
       scrollTo(0, 60);
     }
     render() {
-    const { started, articles } = this.props;
+    const { started, articleIndex } = this.props;
     return (
 
       <div id="work" style={{ marginTop: started ? '-200px' : '0px' }}>
         <Intro />
         {
-          articles.map(article => <ArticleAbstract key={article.id} article={article} />)
+          articleIndex.map(article => <ArticleAbstract key={article.id} article={article} />)
         }
 
         <button
@@ -47,7 +47,7 @@ class BlogContainer extends Component {
 BlogContainer.propTypes = {
   pageArticle: PropTypes.func.isRequired,
   started: PropTypes.bool.isRequired,
-  articles: PropTypes.array.isRequired,
+  articleIndex: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({ ...state.blog });

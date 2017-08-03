@@ -9,7 +9,8 @@ import * as CONST from '../actions/const';
 const initState = {
   started: false,
   isFetching: false,
-  articles: [],
+  articleIndex: [],
+  articles: {},
 };
 
 const blog = (state = initState, action) => {
@@ -23,7 +24,7 @@ const blog = (state = initState, action) => {
     return {
       ...state,
       isFetching: false,
-      articles: [...state.articles, ...action.response],
+      articleIndex: [...state.articleIndex, ...action.response],
     };
   case CONST.PAGE_ARTICLE_FAILURE:
     return {
@@ -35,9 +36,25 @@ const blog = (state = initState, action) => {
       ...state,
       started: action.started,
     };
+  case CONST.BLOG_DETAIL_REQUEST:
+    return {
+      ...state,
+      isFetching: true,
+    };
+  case CONST.BLOG_DETAIL_SUCCESS:
+    return {
+      articles: {
+        ...state.articles,
+        [action.response.id]: action.response,
+      },
+    };
+  case CONST.BLOG_DETAIL_FAILURE:
+    return {
+      ...state,
+      isFetching: false,
+    };
   default:
     return state;
   }
 };
-
 export default blog;
