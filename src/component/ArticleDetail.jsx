@@ -10,9 +10,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MarkdownPreview } from 'react-mark-editor';
 
-const ArticleDetail = (props) => {
-  console.log(props);
-  return <div>Hello</div>;
-};
+const ArticleDetail = props => <div>Hello</div>;
 
 export default ArticleDetail;

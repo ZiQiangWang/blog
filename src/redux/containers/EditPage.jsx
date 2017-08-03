@@ -14,7 +14,7 @@ import Navbar from './Navbar';
 import Toolbar from './Toolbar';
 
 const EditPage = (props) => {
-  const { isAuthenticated, match: { isExact } } = props;
+  const { isAuthenticated, match: { params: { id }, isExact } } = props;
 
   // 如果没有登录，则跳转到登录界面
   if (!isAuthenticated) {

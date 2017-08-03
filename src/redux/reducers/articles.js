@@ -120,6 +120,10 @@ const articles = (state = initState, action) => {
         }
         return item;
       }).sort((a, b) => b.update_time - a.update_time),
+      editor: {
+        ...state.editor,
+        ...objSelect(action.response, { exclude: ['author', 'update_time'] }),
+      },
     };
   case CONST.UPDATE_ARTICLE_FAILURE:
     return {

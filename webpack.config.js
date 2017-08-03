@@ -22,15 +22,15 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx$/,
-                use: ['babel-loader'],
-                exclude: PATHS.node_modules,
-                include: PATHS.src,
+                use: ['babel-loader']
+                // exclude: PATHS.node_modules,
+                // include: PATHS.src,
             },
             {
                 test: /\.js$/,
-                use: ['babel-loader'],
-                exclude: PATHS.node_modules,
-                include: PATHS.src,
+                use: ['babel-loader']
+                // exclude: PATHS.node_modules,
+                // include: PATHS.src,
             },
             {
                 test: /\.less$/,
@@ -62,9 +62,7 @@ module.exports = {
             },
             {
                 test: /\.(svg|eot|ttf|woff)$/,
-                use: [ 'url-loader?name=fonts/[name].[ext]&publicPath=../' ],
-                exclude: PATHS.node_modules,
-                include: PATHS.src
+                use: [ 'url-loader?name=fonts/[name].[ext]&publicPath=../' ]
             }
         ]
 

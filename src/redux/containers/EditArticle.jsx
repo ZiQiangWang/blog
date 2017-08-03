@@ -12,15 +12,27 @@ import { Redirect } from 'react-router-dom';
 import { MarkdownEditor } from 'react-mark-editor';
 import 'react-mark-editor/lib/css/style.css';
 import 'highlight.js/styles/github.css';
-import { articleDetail, articleChange } from '../actions/article';
+import { articleDetail, articleChange, articleSwitch } from '../actions/article';
 
 
 class EditArticle extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { match } = this.props;
     const articleId = match.params.id;
     if (articleId) {
       this.props.articleDetail(articleId);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { article: { articles }, match: { params: { id } } } = this.props;
+    const nextId = nextProps.match.params.id;
+    if (id !== nextId) {
+      if (articles[nextId] === undefined) {
+        this.props.articleDetail(nextId);
+      } else {
+        this.props.articleSwitch(articles[nextId]);
+      }
     }
   }
 
@@ -34,7 +46,10 @@ class EditArticle extends Component {
   }
 
   handleArticleChange = (src) => {
-    this.props.articleChange({ content: src });
+    const { content } = this.props.article.editor;
+    if (src !== content) {
+      this.props.articleChange({ content: src });
+    }
   }
 
   handleTitleChange = (event) => {
@@ -42,15 +57,7 @@ class EditArticle extends Component {
   }
 
   render() {
-    // 对于无法匹配的文章id，跳转到edit页面
-    const { match: { params: { id } }, article: { articleIndex } } = this.props;
-    if (id !== undefined && articleIndex !== undefined) {
-      if (!articleIndex.some(item => item.id === id)) {
-        return <Redirect to="/edit" />;
-      }
-    }
-
-    const { title, content } = this.props.article.editor;
+    const { title, content, publish } = this.props.article.editor;
     const { showEditor, showPreview, showOrder, showEditorNav } = this.props.editorState;
     return (
       <div className="wrap">
@@ -75,6 +82,7 @@ EditArticle.propTypes = {
   match: PropTypes.object.isRequired,
   articleDetail: PropTypes.func.isRequired,
   articleChange: PropTypes.func.isRequired,
+  articleSwitch: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => {
   const { article, editorState } = state;
@@ -82,4 +90,4 @@ const mapStateToProps = (state) => {
   return { article, editorState };
 };
 
-export default connect(mapStateToProps, { articleDetail, articleChange })(EditArticle);
+export default connect(mapStateToProps, { articleDetail, articleChange, articleSwitch })(EditArticle);

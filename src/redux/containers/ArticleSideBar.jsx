@@ -8,22 +8,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { articleList, articleDetail, articleSwitch, createArticle, deleteArticle } from '../actions/article';
+import { articleList, createArticle, deleteArticle } from '../actions/article';
 import IconBtn from '../../component/IconBtn';
 
 class ArticleSideBar extends Component {
   componentWillMount() {
     this.props.articleList(this.props.token);
-  }
-
-  handleClickArticle = (articleId) => {
-    const { articles } = this.props;
-
-    if (articles[articleId] === undefined) {
-      this.props.articleDetail(articleId);
-    } else {
-      this.props.articleSwitch(articles[articleId]);
-    }
   }
 
   handleCreateArticle = () => {
@@ -36,9 +26,8 @@ class ArticleSideBar extends Component {
 
   render() {
     const { articleIndex, showArticleList } = this.props;
-
     let articlesNav;
-    if (articleIndex) {
+    if (articleIndex.length) {
       articlesNav = articleIndex.map(item => (
         <li key={item.id} style={{ position: 'relative' }}>
           <IconBtn
@@ -51,7 +40,6 @@ class ArticleSideBar extends Component {
           <NavLink
             activeClassName="nav-link"
             to={`/edit/${item.id}`}
-            onClick={() => this.handleClickArticle(item.id)}
           >{item.title}
           </NavLink>
           <IconBtn
@@ -86,19 +74,16 @@ class ArticleSideBar extends Component {
 
 ArticleSideBar.propTypes = {
   articleIndex: PropTypes.array.isRequired,
-  articles: PropTypes.object.isRequired,
   showArticleList: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
   articleList: PropTypes.func.isRequired,
-  articleDetail: PropTypes.func.isRequired,
-  articleSwitch: PropTypes.func.isRequired,
   createArticle: PropTypes.func.isRequired,
   deleteArticle: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const { article, auth: { token } } = state;
-  return { ...article, token };
+  const { article: { articleIndex, editor, showArticleList }, auth: { token } } = state;
+  return { articleIndex, editor, showArticleList, token };
 };
 
-export default connect(mapStateToProps, { articleList, articleDetail, articleSwitch, createArticle, deleteArticle })(ArticleSideBar);
+export default connect(mapStateToProps, { articleList, createArticle, deleteArticle })(ArticleSideBar);

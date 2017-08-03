@@ -57,6 +57,10 @@ export const updateArticle = (token = '#', { id, title, content, publish }) => (
   },
 });
 
+export const resetEditor = () => ({
+  type: CONST.RESET_EDITOR,
+});
+
 export const deleteArticle = (token = '#', id) => ({
   [CALL_API]: {
     types: [CONST.DELETE_ARTICLE_REQUEST, CONST.DELETE_ARTICLE_SUCCESS, CONST.DELETE_ARTICLE_FAILURE],
@@ -64,11 +68,9 @@ export const deleteArticle = (token = '#', id) => ({
     endpoint: `article/${id}`,
     params: { token },
   },
+  success: (response, action) => (dispatch, getState) => dispatch(resetEditor()),
 });
 
-export const resetEditor = () => ({
-  type: CONST.RESET_EDITOR,
-});
 
 export const pageArticle = page => ({
   [CALL_API]: {
