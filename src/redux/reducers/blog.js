@@ -11,6 +11,8 @@ const initState = {
   isFetching: false,
   articleIndex: [],
   articles: {},
+  page: 1,
+  nextPage: true,
 };
 
 const blog = (state = initState, action) => {
@@ -21,10 +23,13 @@ const blog = (state = initState, action) => {
       isFetching: true,
     };
   case CONST.PAGE_ARTICLE_SUCCESS:
+  console.log(action.response)
     return {
       ...state,
       isFetching: false,
-      articleIndex: [...state.articleIndex, ...action.response],
+      articleIndex: [...state.articleIndex, ...action.response.articles],
+      page: action.response.next ? state.page + 1 : state.page,
+      nextPage: action.response.next,
     };
   case CONST.PAGE_ARTICLE_FAILURE:
     return {
@@ -43,6 +48,7 @@ const blog = (state = initState, action) => {
     };
   case CONST.BLOG_DETAIL_SUCCESS:
     return {
+      ...state,
       articles: {
         ...state.articles,
         [action.response.id]: action.response,

@@ -10,18 +10,7 @@
 #work {
     transition: margin-top @headerDuration;
     position: relative;
-
-    #back-to-top {
-        position: fixed;
-        bottom: 10%;
-        right: 5%;
-
-        span {
-            margin: auto;
-            color: white;
-            font-size: 1.8em;
-        }
-    }
+    margin-bottom: 200px;
 }
 .article-abstract {
     
@@ -33,6 +22,7 @@
         
         h2 {
             font-size: 2.4em;
+            // margin-bottom: 0.25em;
             a {
                 color: #69606b;
                 transition: color .25s;
@@ -45,14 +35,17 @@
 
         p {
             font-size: 1.35em;
+            // margin-top: 0.5em;
             word-break: break-word;
         }
 
         .info {
-            display: flex;
-            justify-content: flex-end;
+            font-size: .8em;
             span {
-                padding-left: 25px; 
+                padding-right: 20px;
+            }
+            span:before {
+                padding-right: 8px;
             }
         }
     }
@@ -67,4 +60,32 @@
     font-size: 14px;
     display: flex;
     justify-content: flex-end;
+}
+
+
+.article-detail {
+    @media screen and (min-width: 801px){
+        padding: 10px 100px;
+    }
+    @media screen and (max-width: 800px){
+        padding: 10px 10px;
+    }
+    
+    .title {
+        text-align:center;
+        font-size: 1.8em;
+        font-weight: bold;
+    }
+    .info {
+        text-align:center;
+        font-size: .8em;
+        padding-bottom: 10px;
+        border-bottom: thin solid lightgray;
+        span:first-child {
+            margin-right: 30px;
+        }
+
+        display: flex;
+        justify-content: flex-end;
+    }
 }

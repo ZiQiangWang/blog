@@ -35,6 +35,7 @@
 
 // 动画效果函数
 const _ease = {
+  linear(t, b, c, d) { return c * t / d + b; },
   easeIn(t, b, c, d) {
     return (t === 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
   },
@@ -51,9 +52,19 @@ const _ease = {
 };
 
 // 获取当前滚动条位置
-export const currentYPosition = () => document.documentElement.scrollTop
+export const getScrollTop = () => document.documentElement.scrollTop
   || window.pageYOffset
   || document.body.scrollTop;
+
+const getScrollHeight = () => document.documentElement.scrollHeight
+  || window.scrollHeight
+  || document.body.scrollHeight;
+
+const getWindowHeight = () => document.documentElement.clientHeight
+  || window.clientHeight
+  || document.body.clientHeight;
+
+export const isBottom = () => getScrollTop() + getWindowHeight() + 10 > getScrollHeight();
 
 // 获取目标元素的位置
 const _elmYPosition = (eId) => {
@@ -63,7 +74,7 @@ const _elmYPosition = (eId) => {
 
 // 滚动到指定元素位置
 export const scrollTo = (pos, during = 60, ease = 'easeInOut') => {
-  const scrollY = currentYPosition();
+  const scrollY = getScrollTop();
   let targetY;
   if (typeof pos === 'string') {
     targetY = _elmYPosition(pos);

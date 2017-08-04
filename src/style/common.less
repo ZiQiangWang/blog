@@ -20,9 +20,23 @@ html {
     box-sizing: inherit;
 }
 
-body {
-    font-size: 20px;
-    line-height:1.5;
+@media screen and (max-width: 535px) {
+    body {
+        font-size: 14px;
+        line-height:1.35;
+    }
+}
+@media screen and (max-width: 727px){
+    body {
+        font-size: 18px;
+        line-height:1.5;
+    }
+}
+@media screen and (min-width: 727px){
+    body {
+        font-size: 20px;
+        line-height:1.5;
+    }
 }
 
 [data-reactroot] {

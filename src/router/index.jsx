@@ -11,11 +11,13 @@ import EditPage from '../redux/containers/EditPage';
 import NotFound from '../component/NotFound';
 import Login from '../redux/containers/Login';
 import Progress from '../redux/containers/Progress';
+import BackToTop from '../redux/containers/BackToTop';
 
 const routes = () => (
   <HashRouter>
     <div>
       <Progress />
+      <BackToTop shape="round" height="48px" width="48px" icon="icon-arrow-up2"/>
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/login" component={Login} />

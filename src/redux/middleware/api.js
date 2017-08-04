@@ -59,7 +59,12 @@ export default store => next => (action) => {
   };
   const [requestType, successType, failureType] = types;
 
-  const { success, failure } = action;
+  const {  success, failure } = action;
+  const { fetchState } = store.getState();
+
+  if (fetchState.isFetching && fetchState.type === requestType) {
+    return;
+  }
 
   next(actionWith({ type: requestType, isFetching: true }));
   return callApi(endpoint, method, params).then(

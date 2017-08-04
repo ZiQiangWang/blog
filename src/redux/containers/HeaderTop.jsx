@@ -48,8 +48,8 @@ class HeaderTop extends Component {
           <div className="header-background-after" style={{ opacity: started ? 1 : 0 }}></div>
         </div>
         <div className="title">
-          <h1 className={started ? 'started' : ''}>我是我</h1>
-          <p className={started ? 'started' : ''}>我知道的世界 如此不同</p>
+          <h1 className={started ? 'started' : ''}>肉山大魔王的博客</h1>
+          <p className={started ? 'started' : ''}>有些码农真的一刻不消停</p>
         </div>
         <button className="trigger" style={{ display: started ? 'none' : 'block' }} data-info="点此开始" onClick={this.handleClickStart}>
           <span className="icon-arrow-down2"></span>

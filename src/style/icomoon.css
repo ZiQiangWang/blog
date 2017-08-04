@@ -34,18 +34,23 @@
 .icon-home:before {
   content: "\e900";
 }
-
 .icon-pencil2:before {
   content: "\e906";
 }
 .icon-quill:before {
   content: "\e907";
 }
+.icon-calendar:before {
+  content: "\e953";
+}
 .icon-display:before {
   content: "\e956";
 }
 .icon-floppy-disk:before {
   content: "\e962";
+}
+.icon-user:before {
+  content: "\e971";
 }
 .icon-enlarge:before {
   content: "\e989";
@@ -68,6 +73,9 @@
 .icon-sphere:before {
   content: "\e9c9";
 }
+.icon-eye:before {
+  content: "\e9ce";
+}
 .icon-contrast:before {
   content: "\e9d5";
 }
@@ -89,4 +97,3 @@
 .icon-share2:before {
   content: "\ea82";
 }
-

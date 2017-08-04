@@ -57,7 +57,6 @@ class EditArticle extends Component {
   }
 
   render() {
-    console.log("================")
     
     const { articles, articleIndex } = this.props.article;
     const id = this.props.match.params.id;
@@ -72,7 +71,7 @@ class EditArticle extends Component {
     const { title, content, publish } = articles[id];
     const { showEditor, showPreview, showOrder, showEditorNav } = this.props.editorState;
     return (
-      <div className="wrap">
+      <div id="editor" className="wrap">
         <input type="text" className="title" value={title} onChange={this.handleTitleChange} />
         <MarkdownEditor
           height="calc(100% - 55px)"

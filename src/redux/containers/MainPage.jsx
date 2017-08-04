@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import HeaderTop from './HeaderTop';
 import BlogContainer from './BlogContainer';
-import { startBlog } from '../actions/article';
-import { currentYPosition } from '../../utils/scrollTo';
+import { startBlog, pageArticle } from '../actions/blog';
+import { getScrollTop, isBottom } from '../../utils/scrollTo';
 
 class MainPage extends Component {
   constructor(props) {
@@ -22,6 +22,10 @@ class MainPage extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
+    const {page, nextPage} = this.props;
+    if (page === 1 && nextPage) {
+      this.props.pageArticle(page);
+    }
   }
 
   componentWillUnmount() {
@@ -29,13 +33,16 @@ class MainPage extends Component {
   }
 
   handleScroll = () => {
-    const { started } = this.props;
-    const scrollY = currentYPosition();
+    const { started, nextPage } = this.props;
+    const scrollY = getScrollTop();
 
     if (scrollY > 0 && !started) {
       this.props.startBlog(true);
     } else if (scrollY === 0 && started) {
       this.props.startBlog(false);
+    }
+    if (nextPage && isBottom()) {
+      this.props.pageArticle(this.props.page);
     }
   }
   render() {
@@ -53,6 +60,6 @@ MainPage.propTypes = {
   started: PropTypes.bool.isRequired,
   startBlog: PropTypes.func.isRequired,
 };
-const mapStateToProps = state => ({ started: state.blog.started });
+const mapStateToProps = state => ({ ...state.blog });
 
-export default connect(mapStateToProps, { startBlog })(MainPage);
+export default connect(mapStateToProps, { startBlog, pageArticle })(MainPage);

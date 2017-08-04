@@ -13,7 +13,13 @@ import { MarkdownPreview } from 'react-mark-editor';
 import { blogDetail } from '../actions/blog';
 
 class ArticleDetail extends Component {
-  
+  constructor() {
+    super();
+    this.state={
+      show: false,
+    }
+  }
+
   componentDidMount = () => {
     const { match } = this.props;
     const articleId = match.params.id;
@@ -28,7 +34,16 @@ class ArticleDetail extends Component {
     if (article === undefined) {
       return <div>Loaing...</div>
     }
-    return <MarkdownPreview source={article.content}/>;
+    return (
+      <div className="article-detail">
+        <div className="title">{article.title}</div>
+        <div className="info">
+          <span>{article.author}</span>
+          <span>{new Date(article.update_time).toDateString()}</span>
+        </div>
+        <MarkdownPreview source={article.content}/>
+      </div>
+    );
   }
 }
 const mapStateToProps = (state) => {

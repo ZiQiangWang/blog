@@ -70,17 +70,3 @@ export const deleteArticle = (token = '#', id) => ({
   },
   success: (response, action) => (dispatch, getState) => dispatch(resetEditor()),
 });
-
-
-export const pageArticle = page => ({
-  [CALL_API]: {
-    types: [CONST.PAGE_ARTICLE_REQUEST, CONST.PAGE_ARTICLE_SUCCESS, CONST.PAGE_ARTICLE_FAILURE],
-    method: 'GET',
-    endpoint: `article/page/${page}`,
-  },
-});
-
-export const startBlog = started => ({
-  type: CONST.START_BLOG,
-  started,
-});

@@ -19,8 +19,9 @@ const ArticleAbstract = (props) => {
         <h2><Link to={`/article/${article.id}`}>{article.title}</Link></h2>
         <p>{article.content.slice(0, 120)}</p>
         <div className="info">
-          <span>作者：{article.author}</span>
-          <span>时间：{new Date(article.update_time).toDateString()}</span>
+          <span className="icon-eye">12</span>
+          <span className="icon-user">{article.author}</span>
+          <span className="icon-calendar">{new Date(article.update_time).toDateString()}</span>
         </div>
       </div>
     </section>
