@@ -9,7 +9,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactProgress from 'react-prog-bar';
 
-const Progress = props => <ReactProgress trigger={props.isFetching} top />;
+const Progress = props => {
+  return <ReactProgress trigger={props.isFetching} top />;
+}
 
 const mapStateToProps = state => ({ isFetching: state.fetchState.isFetching });
 

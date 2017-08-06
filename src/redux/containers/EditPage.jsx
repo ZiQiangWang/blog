@@ -22,7 +22,7 @@ const EditPage = (props) => {
   }
 
   const editor = isExact ? (
-    <div className="article-empty" style={{ border: 'thin solid lightgray' }}>
+    <div className="article-empty">
       <span className="placeholder">BLOG</span>
     </div>
   )

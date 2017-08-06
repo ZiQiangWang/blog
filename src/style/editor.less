@@ -25,7 +25,7 @@
   text-align: center;
   width: 100%;
   height: 100%;
-
+  border: thin solid lightgray;
   .placeholder {
     display: inline-block;
     vertical-align: middle;
@@ -154,4 +154,36 @@
     }
   }
 
+}
+
+.article-content-loading {
+  display: inline-block;
+  div {
+    background-color: #d0d0d0;
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 0 3px;
+    animation: stretch .6s infinite ease-in-out;
+  }
+
+  .round2 {
+    animation-delay: -.5s;
+  }
+   
+  .round3 {
+    animation-delay: -.4s;
+  }
+
+  @keyframes stretch {
+    0%,100% {
+      background-color: #b0b0b0;
+      transform: scaleY(1);
+    }  
+    50% {
+      transform: scaleY(1.5);
+      background-color: #d0d0d0;
+    }
+  }
 }

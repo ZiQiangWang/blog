@@ -23,7 +23,6 @@ const blog = (state = initState, action) => {
       isFetching: true,
     };
   case CONST.PAGE_ARTICLE_SUCCESS:
-  console.log(action.response)
     return {
       ...state,
       isFetching: false,

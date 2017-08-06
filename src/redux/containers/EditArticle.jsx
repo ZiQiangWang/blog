@@ -25,7 +25,7 @@ class EditArticle extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { article: { articles }, match: { params: { id } } } = this.props;
+    const { articles, match: { params: { id } } } = this.props;
     const nextId = nextProps.match.params.id;
     if (id !== nextId) {
       if (articles[nextId] === undefined) {
@@ -36,39 +36,35 @@ class EditArticle extends Component {
     }
   }
 
-  // shouldComponentUpdate(nextProps) {
-  //   const { id, content } = this.props.article.editor;
-
-  //   if (id !== nextProps.article.editor.id) {
-  //     return true;
-  //   }
-  //   return nextProps.article.editor.content === content;
-  // }
-
   handleArticleChange = (src) => {
     this.props.articleChange({ content: src });
-    // const { content } = this.props.article.editor;
-    // if (src !== content) {
-    // }
   }
 
   handleTitleChange = (event) => {
+    console.log(event.target.value)
     this.props.articleChange({ title: event.target.value });
   }
 
   render() {
-    
-    const { articles, articleIndex } = this.props.article;
+    const { articles, articleIndex, title } = this.props;
     const id = this.props.match.params.id;
     if (!articleIndex.some( item => item.id === id )) {
       return <Redirect to="/edit"/>;
 
     }
     if ( articles[id] === undefined) {
-      return <h1>加载中</h1>;
+      return (
+        <div className="article-empty">
+          <div className="article-content-loading">
+            <div className="round1"></div>
+            <div className="round2"></div>
+            <div className="round3"></div>
+          </div>
+        </div>
+      );
     }
 
-    const { title, content, publish } = articles[id];
+    const { content, publish } = articles[id];
     const { showEditor, showPreview, showOrder, showEditorNav } = this.props.editorState;
     return (
       <div id="editor" className="wrap">
@@ -88,7 +84,8 @@ class EditArticle extends Component {
 }
 
 EditArticle.propTypes = {
-  article: PropTypes.object.isRequired,
+  articles: PropTypes.object.isRequired,
+  articleIndex: PropTypes.array.isRequired,
   editorState: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   articleDetail: PropTypes.func.isRequired,
@@ -96,9 +93,9 @@ EditArticle.propTypes = {
   articleSwitch: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => {
-  const { article, editorState } = state;
+  const { article: { articles, articleIndex, editor:{title} }, editorState } = state;
 
-  return { article, editorState };
+  return { articles, articleIndex, title, editorState };
 };
 
 export default connect(mapStateToProps, { articleDetail, articleChange, articleSwitch })(EditArticle);
