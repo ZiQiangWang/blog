@@ -31,7 +31,7 @@ module.exports = {
                 test: /\.less$/,
                 use: extractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: ['css-loader?importLoaders=1','postcss-loader','less-loader']
+                    use: ['css-loader?importLoaders=1&minimize=1','postcss-loader','less-loader']
                 }),
                 exclude: PATHS.node_modules,
                 include: PATHS.src
@@ -40,7 +40,7 @@ module.exports = {
                 test: /\.css$/,
                 use: extractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: ['css-loader?importLoaders=1','postcss-loader']
+                    use: ['css-loader?importLoaders=1&minimize=1','postcss-loader']
                 })
             },
             {
@@ -73,8 +73,14 @@ module.exports = {
         // css文件导出
         new extractTextPlugin("css/style.css"),
         new webpack.DefinePlugin({
+            ENV: process.env.NODE_ENV,
             'process.env':{
-                'NODE_ENV': JSON.stringify('dev')
+              'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
             }
         })
     ],

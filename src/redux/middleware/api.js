@@ -12,7 +12,12 @@ class NetworkError extends Error {
   }
 }
 
-const API_ROOT = 'http://127.0.0.1:5000/blog/api/v1/';
+let API_ROOT;
+if (process.env.NODE_ENV === 'dev') {
+  API_ROOT = 'http://127.0.0.1:5000/blog/api/v1/';
+} else {
+  API_ROOT = 'http://me.w-z-q.com/blog/api/v1/';
+}
 
 const callApi = (endpoint, mehtod, data) => {
   const fullUrl = API_ROOT + endpoint;
