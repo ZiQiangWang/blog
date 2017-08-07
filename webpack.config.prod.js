@@ -73,7 +73,6 @@ module.exports = {
         // css文件导出
         new extractTextPlugin("css/style.css"),
         new webpack.DefinePlugin({
-            ENV: process.env.NODE_ENV,
             'process.env':{
               'NODE_ENV': JSON.stringify('production')
             }

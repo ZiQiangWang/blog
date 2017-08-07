@@ -14,7 +14,6 @@ import { logout } from '../actions/auth';
 import IconBtn from '../../component/IconBtn';
 
 class Navbar extends Component {
-  
   handleSave = () => {
     const { editor, auth: { token } } = this.props;
     this.props.updateArticle(token, editor);

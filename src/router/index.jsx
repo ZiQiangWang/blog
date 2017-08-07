@@ -4,7 +4,7 @@
  * @date    2017-07-08 18:11:20
  */
 import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, BrowserRouter, Route, Switch } from 'react-router-dom';
 import MainPage from '../redux/containers/MainPage';
 import ArticleDetail from '../redux/containers/ArticleDetail';
 import EditPage from '../redux/containers/EditPage';
@@ -13,9 +13,9 @@ import Login from '../redux/containers/Login';
 import BackToTop from '../redux/containers/BackToTop';
 
 const routes = () => (
-  <HashRouter>
+  <BrowserRouter>
     <div>
-      <BackToTop shape="round" height="48px" width="48px" icon="icon-arrow-up2"/>
+      <BackToTop shape="round" height="48px" width="48px" icon="icon-arrow-up2" />
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/login" component={Login} />
@@ -24,7 +24,7 @@ const routes = () => (
         <Route component={NotFound} />
       </Switch>
     </div>
-  </HashRouter>
+  </BrowserRouter>
 );
 
 export default routes;

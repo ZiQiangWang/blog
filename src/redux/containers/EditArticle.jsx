@@ -41,18 +41,16 @@ class EditArticle extends Component {
   }
 
   handleTitleChange = (event) => {
-    console.log(event.target.value)
     this.props.articleChange({ title: event.target.value });
   }
 
   render() {
     const { articles, articleIndex, title } = this.props;
     const id = this.props.match.params.id;
-    if (!articleIndex.some( item => item.id === id )) {
-      return <Redirect to="/edit"/>;
-
+    if (!articleIndex.some(item => item.id === id)) {
+      return <Redirect to="/edit" />;
     }
-    if ( articles[id] === undefined) {
+    if (articles[id] === undefined) {
       return (
         <div className="article-empty">
           <div className="article-content-loading">
@@ -85,6 +83,7 @@ class EditArticle extends Component {
 
 EditArticle.propTypes = {
   articles: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
   articleIndex: PropTypes.array.isRequired,
   editorState: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
@@ -93,7 +92,7 @@ EditArticle.propTypes = {
   articleSwitch: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => {
-  const { article: { articles, articleIndex, editor:{title} }, editorState } = state;
+  const { article: { articles, articleIndex, editor: { title } }, editorState } = state;
 
   return { articles, articleIndex, title, editorState };
 };

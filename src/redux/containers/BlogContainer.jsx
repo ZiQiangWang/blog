@@ -11,21 +11,18 @@ import PropTypes from 'prop-types';
 import ArticleAbstract from '../../component/ArticleAbstract';
 import Intro from '../../component/Intro';
 
-class BlogContainer extends Component {
+const BlogContainer = (props) => {
+  const { started, articleIndex } = props;
+  return (
 
-  render() {
-    const { started, articleIndex } = this.props;
-    return (
-
-      <div id="work" style={{ marginTop: started ? '-200px' : '0px' }}>
-        <Intro />
-        {
-          articleIndex.map(article => <ArticleAbstract key={article.id} article={article} />)
-        }
-      </div>
-    );
-  }
-}
+    <div id="work" style={{ marginTop: started ? '-200px' : '0px' }}>
+      <Intro />
+      {
+        articleIndex.map(article => <ArticleAbstract key={article.id} article={article} />)
+      }
+    </div>
+  );
+};
 
 BlogContainer.propTypes = {
   started: PropTypes.bool.isRequired,

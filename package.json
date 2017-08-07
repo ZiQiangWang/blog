@@ -4,9 +4,8 @@
   "description": "A demo to learn react and redux",
   "main": "index.js",
   "scripts": {
-    "start": "set NODE_ENV='dev' && webpack-dev-server --open",
-    "build": "set NODE_ENV='production' && webpack --config webpack.config.prod.js",
-    "test": "jest --coverage",
+    "start": "webpack-dev-server --open",
+    "build": "webpack --config webpack.config.prod.js",
     "lint": "eslint --ext .jsx,.js src/ --fix"
   },
   "repository": {

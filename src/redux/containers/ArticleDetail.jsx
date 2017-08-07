@@ -15,9 +15,9 @@ import { blogDetail } from '../actions/blog';
 class ArticleDetail extends Component {
   constructor() {
     super();
-    this.state={
+    this.state = {
       show: false,
-    }
+    };
   }
 
   componentDidMount = () => {
@@ -27,12 +27,11 @@ class ArticleDetail extends Component {
   }
 
   render() {
-
-    const { match, blog: {articles} } = this.props;
+    const { match, blog: { articles } } = this.props;
     const articleId = match.params.id;
     const article = articles[articleId];
     if (article === undefined) {
-      return <div>Loaing...</div>
+      return <div>Loaing...</div>;
     }
     return (
       <div className="article-detail">
@@ -41,12 +40,16 @@ class ArticleDetail extends Component {
           <span>{article.author}</span>
           <span>{new Date(article.update_time).toDateString()}</span>
         </div>
-        <MarkdownPreview source={article.content}/>
+        <MarkdownPreview source={article.content} />
       </div>
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {blog: state.blog};
-}
+
+ArticleDetail.propTypes = {
+  match: PropTypes.object.isRequired,
+  blog: PropTypes.object.isRequired,
+  blogDetail: PropTypes.func.isRequired,
+};
+const mapStateToProps = state => ({ blog: state.blog });
 export default connect(mapStateToProps, { blogDetail })(ArticleDetail);

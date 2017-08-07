@@ -22,7 +22,7 @@ class MainPage extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-    const {page, nextPage} = this.props;
+    const { page, nextPage } = this.props;
     if (page === 1 && nextPage) {
       this.props.pageArticle(page);
     }
@@ -58,7 +58,10 @@ class MainPage extends Component {
 
 MainPage.propTypes = {
   started: PropTypes.bool.isRequired,
+  page: PropTypes.number.isRequired,
+  nextPage: PropTypes.bool.isRequired,
   startBlog: PropTypes.func.isRequired,
+  pageArticle: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({ ...state.blog });
 
