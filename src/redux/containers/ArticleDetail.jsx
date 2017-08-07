@@ -9,8 +9,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { MarkdownPreview } from 'react-mark-editor';
 import { blogDetail } from '../actions/blog';
+import IconBtn from '../../component/IconBtn';
 
 class ArticleDetail extends Component {
   constructor() {
@@ -42,13 +44,27 @@ class ArticleDetail extends Component {
       );
     }
     return (
-      <div className="article-detail">
-        <div className="title">{article.title}</div>
-        <div className="info">
-          <span>{article.author}</span>
-          <span>{new Date(article.update_time).toDateString()}</span>
+      <div className="wrap">
+        <div className="navbar">
+          <Link to="/">
+            <IconBtn
+              config={{
+                icon: 'icon-home',
+                iconTheme: 'green',
+              }}
+              style={{ paddingLeft: '20px', fontSize: '24px' }}
+            />
+          </Link>
+           <span style={{ width: '100%' }}></span>
         </div>
-        <MarkdownPreview source={article.content} />
+        <div className="article-detail">
+          <div className="title">{article.title}</div>
+          <div className="info">
+            <span>{article.author}</span>
+            <span>{new Date(article.update_time).toDateString()}</span>
+          </div>
+          <MarkdownPreview source={article.content} />
+        </div>
       </div>
     );
   }

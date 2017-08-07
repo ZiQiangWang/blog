@@ -13,9 +13,15 @@ import Login from '../redux/containers/Login';
 import BackToTop from '../redux/containers/BackToTop';
 
 const routes = () => {
+  const backConfig = {
+    shape: 'round',
+    radius: 24,
+    icon: 'icon-arrow-up2',
+    speed: 100,
+  }
   const route = (
     <div>
-      <BackToTop shape="round" height="48px" width="48px" icon="icon-arrow-up2" />
+      <BackToTop {...backConfig}/>
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/login" component={Login} />

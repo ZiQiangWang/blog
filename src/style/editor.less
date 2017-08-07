@@ -42,16 +42,17 @@
 }
 
 .sidenav-width {
-  @media screen and (min-width: 801px){
-    width: 300px !important;
-  }
-  @media screen and (max-width: 800px){
+
+  @media screen and (max-width: 727px) {
     height: calc(~"100% - 48px") !important;
     width: 100% !important;
     position: absolute;
     z-index: 100;
     background: white;
     border-right: thin solid lightgray;
+  }
+  @media screen and (min-width: 727px){
+      width: 30% !important;
   }
 }
 .sidenav {
