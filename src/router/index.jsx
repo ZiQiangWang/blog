@@ -12,8 +12,8 @@ import NotFound from '../component/NotFound';
 import Login from '../redux/containers/Login';
 import BackToTop from '../redux/containers/BackToTop';
 
-const routes = () => (
-  <BrowserRouter>
+const routes = () => {
+  const route = (
     <div>
       <BackToTop shape="round" height="48px" width="48px" icon="icon-arrow-up2" />
       <Switch>
@@ -24,7 +24,11 @@ const routes = () => (
         <Route component={NotFound} />
       </Switch>
     </div>
-  </BrowserRouter>
-);
+  );
+  if (process.env.NODE_ENV === 'dev') {
+    return <HashRouter>{route}</HashRouter>;
+  }
+  return <BrowserRouter>{route}</BrowserRouter>;
+};
 
 export default routes;

@@ -11,11 +11,12 @@ import { createLogger } from 'redux-logger';
 import reducer from '../reducers';
 import api from '../middleware/api';
 
-const middleware = [api, thunk, createLogger()];
-// if (process.env.NODE_ENV === 'dev') {
-// } else {
-//   middleware = [api, thunk];
-// }
+let middleware;
+if (process.env.NODE_ENV === 'dev') {
+  middleware = [api, thunk, createLogger()];
+} else {
+  middleware = [api, thunk];
+}
 
 const store = createStore(reducer, applyMiddleware(...middleware));
 

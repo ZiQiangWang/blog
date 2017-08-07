@@ -48,12 +48,12 @@ export const createArticle = (title = '新建', content = '', token = '#') => ({
   },
 });
 
-export const updateArticle = (token = '#', { id, title, content, publish }) => ({
+export const updateArticle = (token = '#', { id, title, abstract, content, publish }) => ({
   [CALL_API]: {
     types: [CONST.UPDATE_ARTICLE_REQUEST, CONST.UPDATE_ARTICLE_SUCCESS, CONST.UPDATE_ARTICLE_FAILURE],
     method: 'PUT',
     endpoint: `article/${id}`,
-    params: { token, title, content, publish },
+    params: { token, title, content, abstract, publish },
   },
 });
 

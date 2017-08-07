@@ -16,7 +16,8 @@ import IconBtn from '../../component/IconBtn';
 class Navbar extends Component {
   handleSave = () => {
     const { editor, auth: { token } } = this.props;
-    this.props.updateArticle(token, editor);
+    const preview = document.getElementsByClassName('preview')[0];
+    this.props.updateArticle(token, { ...editor, abstract: `${preview.innerText.substring(0, 101)}...` });
   }
 
   handlePublish = () => {

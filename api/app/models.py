@@ -23,9 +23,11 @@ class Article(db.Model):
   author_id = db.Column(db.Integer, db.ForeignKey('user.id'))
   author = db.relationship('User', backref='article')
   update_time = db.Column(db.Integer)
+  views = db.Column(db.Integer, default=0)
+  abstract = db.Column(db.String)
 
-  def to_dict(self):
-    result = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+  def to_dict(self, exclude=[]):
+    result = {c.name: getattr(self, c.name) for c in self.__table__.columns if c.name not in exclude}
     del result['author_id']
     result['author'] = self.author.name
     return result

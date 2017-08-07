@@ -14,16 +14,21 @@ def get_article_by_id(id):
 
   return article.to_dict()
 
+def get_article_visit_by_id(id):
+  article = Article.query.filter_by(id=id).first()
+  article.views = article.views + 1;
+  db.session.commit()
+  return article.to_dict()
+  
 # article page
 def get_articles_of_page(page):
   articles = Article.query.filter_by(publish=True).order_by(Article.update_time.desc()).paginate(page,per_page=1,error_out=False)
-  return {'articles': [ article.to_dict() for article in articles.items ], 'next': articles.has_next}
+  return {'articles': [ article.to_dict(exclude=['content']) for article in articles.items ], 'next': articles.has_next}
 
 # article list
 def get_articles_of_user(user_id):
   articles = Article.query.filter_by(author_id=user_id).order_by(Article.update_time.desc()).all()
-
-  return [ {k: v for k, v in article.to_dict().items() if k not in ['content', 'author_id']} for article in articles]
+  return [ article.to_dict(exclude=['content','abstract']) for article in articles]
 
 # add article 
 def add_article(data):
@@ -43,7 +48,6 @@ def delete_article_by_id(id):
 def update_article_by_id(id, data):
   data['update_time'] = util.time_stamp()
   article = Article.query.filter_by(id=id).first()
-  print "===========",article
   for key, value in data.items():
     setattr(article, key, value)
   db.session.commit()

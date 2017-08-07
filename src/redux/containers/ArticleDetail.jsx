@@ -31,7 +31,15 @@ class ArticleDetail extends Component {
     const articleId = match.params.id;
     const article = articles[articleId];
     if (article === undefined) {
-      return <div>Loaing...</div>;
+      return (
+        <div className="article-empty">
+          <div className="article-content-loading">
+            <div className="round1"></div>
+            <div className="round2"></div>
+            <div className="round3"></div>
+          </div>
+        </div>
+      );
     }
     return (
       <div className="article-detail">

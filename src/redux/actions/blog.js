@@ -25,6 +25,6 @@ export const blogDetail = articleId => ({
   [CALL_API]: {
     types: [CONST.BLOG_DETAIL_REQUEST, CONST.BLOG_DETAIL_SUCCESS, CONST.BLOG_DETAIL_FAILURE],
     method: 'GET',
-    endpoint: `article/${articleId}`,
+    endpoint: `article/blog/${articleId}`,
   },
 });

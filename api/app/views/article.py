@@ -37,7 +37,17 @@ def article_detail(articleId):
   try:
     article = db_util.get_article_by_id(articleId)
   except Exception as e:
-    raise
+    traceback.print_exc()
+    abort(500)
+  return jsonify(article)
+
+@article.route('/blog/<articleId>', methods=['GET'])
+def article_blog_detail(articleId):
+  try:
+    article = db_util.get_article_visit_by_id(articleId)
+  except Exception as e:
+    traceback.print_exc()
+    abort(500)
   return jsonify(article)
 
 @article.route('/', methods=['POST'])

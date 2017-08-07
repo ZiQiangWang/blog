@@ -20,8 +20,6 @@ CORS(app)
 def make_shell_context():
   return dict(app=app, db=db, Article=Article)
 
-# server = Server(host="0.0.0.0", port=5000, use_debugger=False)
-# manager.add_command('runserver', server)
 manager.add_command('shell',Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
 
