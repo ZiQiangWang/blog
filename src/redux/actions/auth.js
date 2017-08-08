@@ -36,12 +36,19 @@ export const logout = token => ({
   },
 });
 
-export const signup = (username, password, passwordRepeat, invitation) => ({
+export const signup = ({ username, password, passwordRepeat, invitation }) => ({
   [CALL_API]: {
     types: [CONST.SIGNUP_REQUEST, CONST.SIGNUP_SUCCESS, CONST.SIGNUP_FAILURE],
     method: 'POST',
     endpoint: 'auth/signup',
     params: { username, password, passwordRepeat, invitation },
+  },
+  success: response => (dispatch, getState) => {
+    if (process.env.NODE_ENV === 'dev') {
+      window.location.href = '/#/login';
+    } else {
+      window.location.href = '/login';
+    }
   },
 });
 

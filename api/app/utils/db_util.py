@@ -62,10 +62,32 @@ def check_user(name, pwd):
 
   return False
 
+def create_user(name, password, code):
+  user = User()
+  user.name = name
+  user.password = util.hex_md5(password)
+  db.session.add(user)
+
+  inv = Invitation.query.filter_by(code=code).first()
+  inv.status = 'used'
+  inv.username = name
+  db.session.commit()
+
+
 def username_exist(name):
   user = User.query.filter_by(name=name).first()
-  return user == None
+  return user != None
 
 def isInvited(code):
   send_code = Invitation.query.filter_by(code=code, status='send').first()
-  return send_code == None
+  return send_code != None
+
+def createInvitation(num):
+  if num < 1:
+    return
+
+  for x in xrange(num):
+    inv = Invitation()
+    inv.code = util.random_invitation()
+    db.session.add(inv)
+  db.session.commit()

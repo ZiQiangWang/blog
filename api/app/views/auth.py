@@ -39,16 +39,20 @@ def sign_up():
 
   name = info['username']
   if not util.validate_name(name):
-    return jsonify({'flag': False, 'msg': '用户名必须长度为6-12，由大小写字母和数字组成'})
+    return jsonify({'flag': False, 'msg': '用户名必须长度为4-12，由大小写字母和数字组成'})
 
   if db_util.username_exist(name):
     return jsonify({'flag': False, 'msg': '用户名已存在'})
 
   password = info['password']
+  if not util.validate_password(password):
+    return jsonify({'flag': False, 'msg': '密码必须长度为6-12，由大小写字母和数字组成'})
   passwordRepeat = info['passwordRepeat']
 
   if password != passwordRepeat:
     return jsonify({'flag': False, 'msg': '两次密码输入不一致'})
+
+  db_util.create_user(name, password,code);
 
   return jsonify({'flag': True})
 

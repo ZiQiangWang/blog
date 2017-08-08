@@ -11,7 +11,7 @@ class User(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String)
   password = db.Column(db.String)
-  role = db.Column(db.Integer)
+  role = db.Column(db.Integer, default=2)
 
 class Article(db.Model):
   __tablename__ = 'article'
@@ -38,6 +38,6 @@ class Invitation(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   code = db.Column(db.String)                         # 邀请码
   status = db.Column(db.String, default='created')    # created, send, used
-  username = db.Column(db.String)                     # 使用者姓名
+  username = db.Column(db.String, default='')                     # 使用者姓名
 
     

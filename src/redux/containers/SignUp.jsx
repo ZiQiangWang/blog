@@ -13,9 +13,28 @@ import { connect } from 'react-redux';
 import { signup } from '../actions/auth';
 
 class SignUp extends Component {
-  handleSignUp = () => {
-    this.props.signup(this.username.value, this.password.value, this.passwordRepeat.value, this.invitation.value);
+  constructor() {
+    super();
+    this.state = {
+      username: '',
+      password: '',
+      passwordRepeat: '',
+      invitation: '',
+    };
   }
+
+  handleSignUp = () => {
+    this.props.signup(this.state);
+  }
+
+  handleChange = (event) => {
+    const target = event.target;
+    this.setState({
+      ...this.state,
+      [target.name]: target.value,
+    });
+  }
+
   render() {
     return (
       <div className="login-page">
@@ -27,10 +46,10 @@ class SignUp extends Component {
           </span>
         </h4>
         <div className="login">
-          <input type="text" placeholder="请输入用户名" ref={(instance) => { this.username = instance; }} />
-          <input type="password" placeholder="请输入密码" ref={(instance) => { this.password = instance; }} />
-          <input type="password" placeholder="请再次输入密码" ref={(instance) => { this.passwordRepeat = instance; }} />
-          <input type="text" placeholder="请输入邀请码" ref={(instance) => { this.invitation = instance; }} />
+          <input type="text" name="username" placeholder="请输入用户名" value={this.state.username} onChange={this.handleChange} />
+          <input type="password" name="password" placeholder="请输入密码" value={this.state.password} onChange={this.handleChange} />
+          <input type="password" name="passwordRepeat" placeholder="请再次输入密码" value={this.state.passwordRepeat} onChange={this.handleChange} />
+          <input type="text" name="invitation" placeholder="请输入邀请码" value={this.state.invitation} onChange={this.handleChange} />
           <button onClick={() => this.handleSignUp()}>注册</button>
         </div>
       </div>
@@ -40,7 +59,6 @@ class SignUp extends Component {
 
 SignUp.propTypes = {
   signup: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
 };
 const mapStateToProps = (state) => {
   const { auth } = state;

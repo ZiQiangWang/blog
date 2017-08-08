@@ -9,6 +9,8 @@ import time
 import hashlib   
 import json
 import re
+import random
+import string
 from .. import rds
 
 def random_str():
@@ -40,5 +42,12 @@ def need_token(func):
   return wrapper
 
 def validate_name(name):
-  pattern = re.compile(r'[\w]{6,11}')
+  pattern = re.compile(r'[\w]{4,11}')
   return pattern.match(name)
+
+def validate_password(password):
+  pattern = re.compile(r'[\w]{6,11}')
+  return pattern.match(password)
+
+def random_invitation():
+  return ''.join(random.sample(string.ascii_letters + string.digits, 8))
