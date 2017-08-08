@@ -36,3 +36,12 @@ export const logout = token => ({
   },
 });
 
+export const signup = (username, password, passwordRepeat, invitation) => ({
+  [CALL_API]: {
+    types: [CONST.SIGNUP_REQUEST, CONST.SIGNUP_SUCCESS, CONST.SIGNUP_FAILURE],
+    method: 'POST',
+    endpoint: 'auth/signup',
+    params: { username, password, passwordRepeat, invitation },
+  },
+});
+

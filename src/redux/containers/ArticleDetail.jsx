@@ -26,6 +26,7 @@ class ArticleDetail extends Component {
     const { match } = this.props;
     const articleId = match.params.id;
     this.props.blogDetail(articleId);
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -55,7 +56,7 @@ class ArticleDetail extends Component {
               style={{ paddingLeft: '20px', fontSize: '24px' }}
             />
           </Link>
-           <span style={{ width: '100%' }}></span>
+          <span style={{ width: '100%' }}></span>
         </div>
         <div className="article-detail">
           <div className="title">{article.title}</div>

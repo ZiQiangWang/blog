@@ -4,9 +4,11 @@
 # @Author  : ZiQiangWang
 # Email    : 814120507@qq.com
 
+from flask import url_for, request, session, abort
 import time
 import hashlib   
-from flask import url_for, request, abort
+import json
+import re
 from .. import rds
 
 def random_str():
@@ -33,6 +35,10 @@ def need_token(func):
     author_id = rds.get(token)
     if not author_id:
       abort(401)
-
+    session['author_id'] = int(author_id)
     func()
   return wrapper
+
+def validate_name(name):
+  pattern = re.compile(r'[\w]{6,11}')
+  return pattern.match(name)

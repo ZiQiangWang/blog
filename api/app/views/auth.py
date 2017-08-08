@@ -29,3 +29,28 @@ def delete_token():
 
   result = rds.delete(token)
   return jsonify({'flag': bool(result)})
+
+@auth.route('/signup', methods=['POST'])
+def sign_up():
+  info = json.loads(request.data)
+  code = info['invitation']
+  if not db_util.isInvited(code):
+    return jsonify({'flag': False, 'msg': '无效的邀请码'})
+
+  name = info['username']
+  if not util.validate_name(name):
+    return jsonify({'flag': False, 'msg': '用户名必须长度为6-12，由大小写字母和数字组成'})
+
+  if db_util.username_exist(name):
+    return jsonify({'flag': False, 'msg': '用户名已存在'})
+
+  password = info['password']
+  passwordRepeat = info['passwordRepeat']
+
+  if password != passwordRepeat:
+    return jsonify({'flag': False, 'msg': '两次密码输入不一致'})
+
+  return jsonify({'flag': True})
+
+
+

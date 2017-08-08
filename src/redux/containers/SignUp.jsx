@@ -1,25 +1,22 @@
 /**
+ * 
  * @authors ZiQiangWang
  * @email   814120507@qq.com
- * @date    2017-07-26 21:17:14
+ * @date    2017-08-08 11:07:14
  */
+
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login } from '../actions/auth';
+import { signup } from '../actions/auth';
 
-class Login extends Component {
-  handleLogin = () => {
-    this.props.login(this.username.value, this.password.value);
+class SignUp extends Component {
+  handleSignUp = () => {
+    this.props.signup(this.username.value, this.password.value, this.passwordRepeat.value, this.invitation.value);
   }
   render() {
-    const { isAuthenticated } = this.props;
-    if (isAuthenticated) {
-      return <Redirect to="/edit" />;
-    }
-
     return (
       <div className="login-page">
         <h4 className="title">
@@ -32,15 +29,17 @@ class Login extends Component {
         <div className="login">
           <input type="text" placeholder="请输入用户名" ref={(instance) => { this.username = instance; }} />
           <input type="password" placeholder="请输入密码" ref={(instance) => { this.password = instance; }} />
-          <button onClick={() => this.handleLogin()}>登录</button>
+          <input type="password" placeholder="请再次输入密码" ref={(instance) => { this.passwordRepeat = instance; }} />
+          <input type="text" placeholder="请输入邀请码" ref={(instance) => { this.invitation = instance; }} />
+          <button onClick={() => this.handleSignUp()}>注册</button>
         </div>
       </div>
     );
   }
 }
 
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
+SignUp.propTypes = {
+  signup: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
 const mapStateToProps = (state) => {
@@ -48,4 +47,4 @@ const mapStateToProps = (state) => {
   return auth;
 };
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { signup })(SignUp);

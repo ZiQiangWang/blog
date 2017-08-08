@@ -10,6 +10,7 @@ import ArticleDetail from '../redux/containers/ArticleDetail';
 import EditPage from '../redux/containers/EditPage';
 import NotFound from '../component/NotFound';
 import Login from '../redux/containers/Login';
+import SignUp from '../redux/containers/SignUp';
 import BackToTop from '../redux/containers/BackToTop';
 
 const routes = () => {
@@ -18,13 +19,14 @@ const routes = () => {
     radius: 24,
     icon: 'icon-arrow-up2',
     speed: 100,
-  }
+  };
   const route = (
     <div>
-      <BackToTop {...backConfig}/>
+      <BackToTop {...backConfig} />
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />
         <Route path="/edit" component={EditPage} />
         <Route path="/article/:id" component={ArticleDetail} />
         <Route component={NotFound} />

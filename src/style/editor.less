@@ -188,3 +188,72 @@
     }
   }
 }
+
+.login-page {
+  padding: 125px 50px 50px;
+  text-align: center;
+
+  .title {
+    margin: 70px auto 50px;
+    border-bottom: 1px solid #eeeeee;
+    color: #b1b1b1;
+    font-family: '黑体';
+
+    span {
+      position: relative;
+      top: 15px;
+      padding: 0 30px;
+      background: white;
+
+      a:link, a:visited {
+        color: #b1b1b1;
+        text-decoration:none; 
+      }
+
+      b {
+        margin: 0 10px;
+      }
+    }
+
+    span .active {
+      color: #555555 !important;
+    }
+  }
+
+  .login {
+    margin-left: auto;
+    margin-right: auto;
+
+    input, button {
+      @media screen and (max-width: 727px) {
+        width: 80%;
+      }
+      @media screen and (min-width: 727px){
+          width: 25% !important;
+      }
+      display: block;
+      margin: 0 auto;
+      transition: all .4s;
+    }
+
+    input {
+      font-size: .8em;
+      padding: 4px 10px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      height: 30px;
+      color: white;
+      background: #888;
+      border: none;
+      cursor: pointer;
+      outline:none;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background: #666;
+    }
+  }
+}

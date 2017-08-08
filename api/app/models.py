@@ -31,3 +31,13 @@ class Article(db.Model):
     del result['author_id']
     result['author'] = self.author.name
     return result
+
+class Invitation(db.Model):
+  __tablename__ = 'invitation'
+  
+  id = db.Column(db.Integer, primary_key=True)
+  code = db.Column(db.String)                         # 邀请码
+  status = db.Column(db.String, default='created')    # created, send, used
+  username = db.Column(db.String)                     # 使用者姓名
+
+    

@@ -56,9 +56,16 @@ def update_article_by_id(id, data):
 
 # check user
 def check_user(name, pwd):
-  # user = User.query.filter_by(name=name,password=util.hex_md5(pwd)).first()
-  user = User.query.filter_by(name=name,password=pwd).first()
+  user = User.query.filter_by(name=name,password=util.hex_md5(pwd)).first()
   if user:
     return user.id
 
   return False
+
+def username_exist(name):
+  user = User.query.filter_by(name=name).first()
+  return user == None
+
+def isInvited(code):
+  send_code = Invitation.query.filter_by(code=code, status='send').first()
+  return send_code == None

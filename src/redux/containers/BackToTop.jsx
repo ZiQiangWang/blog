@@ -18,7 +18,7 @@ class BackToTop extends Component {
       style: {
         ...props.position,
         position: 'fixed',
-        zIndex: 1000,
+        zIndex: -1,
         paddingBottom: '50%',
         padding: '6px 12px',
         fontSize: props.fontSize,

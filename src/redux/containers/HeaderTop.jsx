@@ -35,13 +35,15 @@ class HeaderTop extends Component {
       <div className="header">
         <div className="nav">
           <IconBtn
-            config={{ icon: 'icon-enlarge', text: '全屏浏览' }}
+            config={{ icon: 'icon-enlarge', iconTheme: 'btn-white', text: '全屏浏览' }}
             onClick={this.handleFullscreen}
+            style={{ fontSize: '.65em', transition: 'color .4s' }}
           />
           <span className="center"></span>
           <IconBtn
-            config={{ icon: 'icon-sphere', text: 'Github' }}
+            config={{ icon: 'icon-sphere', iconTheme: 'btn-white', text: 'Github' }}
             onClick={() => this.handleGithub()}
+            style={{ fontSize: '.65em', transition: 'color .4s' }}
           />
         </div>
         <div className="header-background" style={{ transform: started ? 'translateY(-25%)' : 'translateY(0%)' }}>
