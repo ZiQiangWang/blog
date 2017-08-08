@@ -19,7 +19,7 @@ def create_token():
     token = util.random_str()
     rds.set(token, auth)
     rds.expire(token, 24 * 60 * 60 )
-    return jsonify({'token': token})
+    return jsonify({'token': token, 'username': info['name']})
   else:
     abort(401)
 
@@ -33,6 +33,7 @@ def delete_token():
 @auth.route('/signup', methods=['POST'])
 def sign_up():
   info = json.loads(request.data)
+
   code = info['invitation']
   if not db_util.isInvited(code):
     return jsonify({'flag': False, 'msg': '无效的邀请码'})

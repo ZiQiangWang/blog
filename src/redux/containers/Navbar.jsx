@@ -33,7 +33,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { editor, articles } = this.props;
+    const { editor, articles, auth: { username } } = this.props;
     let save;
     let publish;
     if (editor.id !== '') {
@@ -84,6 +84,7 @@ class Navbar extends Component {
         <span style={{ width: '100%' }}></span>
         {save}
         {publish}
+        <span className="username">{username}</span>
         <IconBtn
           config={{
             icon: 'icon-exit',

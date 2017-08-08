@@ -42,11 +42,11 @@ def need_token(func):
   return wrapper
 
 def validate_name(name):
-  pattern = re.compile(r'[\w]{4,11}')
+  pattern = re.compile(r'^[\w]{4,11}$')
   return pattern.match(name)
 
 def validate_password(password):
-  pattern = re.compile(r'[\w]{6,11}')
+  pattern = re.compile(r'^[\w]{6,11}$')
   return pattern.match(password)
 
 def random_invitation():

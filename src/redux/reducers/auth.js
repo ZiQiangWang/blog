@@ -9,6 +9,7 @@ import * as CONST from '../actions/const';
 
 const initState = {
   isFetching: false,
+  username: localStorage.getItem('username'),
   token: localStorage.getItem('blog_token'),
   isAuthenticated: localStorage.getItem('blog_token') !== null,
 };
@@ -29,17 +30,17 @@ const auth = (state = initState, action) => {
     return {
       ...state,
       isFetching: false,
+      username: action.response.username,
       token: action.response.token,
       isAuthenticated: true,
-      status: action.status,
     };
   case CONST.LOGIN_FAILURE:
     return {
       ...state,
       isFetching: false,
+      username: undefined,
       token: undefined,
       isAuthenticated: false,
-      status: action.status,
     };
   case CONST.LOGOUT_REQUEST:
     return {
@@ -50,17 +51,17 @@ const auth = (state = initState, action) => {
     return {
       ...state,
       isFetching: false,
+      username: undefined,
       token: undefined,
       isAuthenticated: false,
-      status: action.status,
     };
   case CONST.LOGOUT_FAILUARE:
     return {
       ...state,
       isFetching: false,
+      username: undefined,
       token: undefined,
       isAuthenticated: false,
-      status: action.status,
     };
   default:
     return state;

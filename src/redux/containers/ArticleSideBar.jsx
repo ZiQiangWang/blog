@@ -27,7 +27,7 @@ class ArticleSideBar extends Component {
   render() {
     const { articleIndex, showArticleList } = this.props;
     let articlesNav;
-    if (articleIndex.length) {
+    if (articleIndex) {
       articlesNav = articleIndex.map(item => (
         <li key={item.id} style={{ position: 'relative' }}>
           <IconBtn
@@ -73,7 +73,7 @@ class ArticleSideBar extends Component {
 }
 
 ArticleSideBar.propTypes = {
-  articleIndex: PropTypes.array.isRequired,
+  articleIndex: PropTypes.array,
   showArticleList: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
   articleList: PropTypes.func.isRequired,

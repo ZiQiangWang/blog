@@ -11,15 +11,38 @@ import { connect } from 'react-redux';
 import { login } from '../actions/auth';
 
 class Login extends Component {
-  handleLogin = () => {
-    this.props.login(this.username.value, this.password.value);
+  constructor() {
+    super();
+    this.state = {
+      username: {valid: false, value: ''},
+      password: {valid: false, value: ''},
+    }
   }
+
+  handleLogin = () => {
+    this.props.login(this.state.username, this.state.password);
+  }
+
+  handleChange = (event) => {
+    const target = event.target;
+    const newObj = {value: target.value, valid: false};
+
+    if (target.value !== '') {
+      newObj.valid = true;
+    }
+    this.setState({
+      ...this.state,
+      [target.name]: newObj,
+    });
+  }
+
   render() {
     const { isAuthenticated } = this.props;
     if (isAuthenticated) {
       return <Redirect to="/edit" />;
     }
 
+    const { username, password } = this.state; 
     return (
       <div className="login-page">
         <h4 className="title">
@@ -30,9 +53,17 @@ class Login extends Component {
           </span>
         </h4>
         <div className="login">
-          <input type="text" placeholder="请输入用户名" ref={(instance) => { this.username = instance; }} />
-          <input type="password" placeholder="请输入密码" ref={(instance) => { this.password = instance; }} />
-          <button onClick={() => this.handleLogin()}>登录</button>
+          <div className="input-container">
+            <input type="text" name="username" placeholder="请输入用户名" value={username.value} onChange={this.handleChange} />
+            {!username.valid && username.value !== '' && <span className="warning">用户名不能为空</span>}
+          </div>
+          <div className="input-container">
+            <input type="password" name="password" placeholder="请输入密码" value={password.value} onChange={this.handleChange} />
+            {!password.valid && password.value != '' && <span className="warning">密码不能为空</span>}
+          </div>
+          <button 
+            onClick={() => this.handleLogin()} 
+            disabled={!(username.valid && password.valid)}>登录</button>
         </div>
       </div>
     );

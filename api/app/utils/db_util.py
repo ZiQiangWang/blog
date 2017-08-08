@@ -22,7 +22,7 @@ def get_article_visit_by_id(id):
   
 # article page
 def get_articles_of_page(page):
-  articles = Article.query.filter_by(publish=True).order_by(Article.update_time.desc()).paginate(page,per_page=1,error_out=False)
+  articles = Article.query.filter_by(publish=True).order_by(Article.update_time.desc()).paginate(page,per_page=5,error_out=False)
   return {'articles': [ article.to_dict(exclude=['content']) for article in articles.items ], 'next': articles.has_next}
 
 # article list

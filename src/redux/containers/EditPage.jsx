@@ -28,7 +28,7 @@ const EditPage = (props) => {
   )
     : <Route path="/edit/:id" component={EditArticle} />;
   return (
-    <div className="wrap">
+    <div id="edit-page">
       <Navbar />
       <Toolbar />
       <div className="wrap" style={{ display: 'flex', height: 'calc(100% - 48px)' }}>

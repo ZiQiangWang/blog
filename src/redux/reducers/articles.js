@@ -10,7 +10,7 @@ import { objFilter, objSelect } from '../../utils/utils';
 const initState = {
   isFetching: false,
   showArticleList: true,
-  articleIndex: [],
+  articleIndex: undefined,
   articles: {},
   editor: { id: '', title: '', content: '', publish: undefined },
 };

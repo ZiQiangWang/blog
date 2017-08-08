@@ -20,7 +20,10 @@ export const login = (name, password) => ({
     endpoint: 'auth/create',
     params: { name, password },
   },
-  success: response => (dispatch, getState) => localStorage.setItem('blog_token', response.token),
+  success: response => (dispatch, getState) => {
+    localStorage.setItem('blog_token', response.token)
+    localStorage.setItem('username', response.username)
+  },
 });
 
 export const logout = token => ({
@@ -32,11 +35,12 @@ export const logout = token => ({
   },
   success: response => (dispatch, getState) => {
     localStorage.removeItem('blog_token');
+    localStorage.removeItem('username');
     dispatch(resetEditor());
   },
 });
 
-export const signup = ({ username, password, passwordRepeat, invitation }) => ({
+export const signup = ( username, password, passwordRepeat, invitation ) => ({
   [CALL_API]: {
     types: [CONST.SIGNUP_REQUEST, CONST.SIGNUP_SUCCESS, CONST.SIGNUP_FAILURE],
     method: 'POST',
