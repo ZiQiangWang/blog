@@ -6,7 +6,6 @@
  */
 
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -62,7 +61,7 @@ Notify.defaultProps = {
 };
 
 Notify.propTypes = {
-  message: PropTypes.string.isRequired,
+  message: PropTypes.string,
   background: PropTypes.string,
   color: PropTypes.string,
 };

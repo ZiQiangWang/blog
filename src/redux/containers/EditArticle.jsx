@@ -87,7 +87,7 @@ class EditArticle extends Component {
 EditArticle.propTypes = {
   articles: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
-  articleIndex: PropTypes.array.isRequired,
+  articleIndex: PropTypes.array,
   editorState: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   articleDetail: PropTypes.func.isRequired,

@@ -46,7 +46,7 @@ class ArticleDetail extends Component {
     }
     return (
       <div className="wrap">
-        <div className="navbar">
+        <div className="article-navbar">
           <Link to="/">
             <IconBtn
               config={{
