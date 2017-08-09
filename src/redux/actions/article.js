@@ -6,6 +6,7 @@
  */
 import { CALL_API } from '../middleware/api';
 import * as CONST from './const';
+import { loseAuth } from './auth';
 
 export const toggleShowArticle = () => ({
   type: CONST.SHOW_ARTICLE_LIST,
@@ -36,7 +37,7 @@ export const articleDetail = articleId => ({
     method: 'GET',
     endpoint: `article/${articleId}`,
   },
-  success: (response, action) => articleSwitch(response),
+  success: response => articleSwitch(response),
 });
 
 export const createArticle = (title = '新建', content = '', token = '#') => ({
@@ -46,6 +47,7 @@ export const createArticle = (title = '新建', content = '', token = '#') => ({
     endpoint: 'article/',
     params: { title, content, token },
   },
+  failure: error => (dispatch, getState) => dispatch(loseAuth()),
 });
 
 export const updateArticle = (token = '#', { id, title, abstract, content, publish }) => ({
@@ -55,6 +57,7 @@ export const updateArticle = (token = '#', { id, title, abstract, content, publi
     endpoint: `article/${id}`,
     params: { token, title, content, abstract, publish },
   },
+  failure: error => (dispatch, getState) => dispatch(loseAuth()),
 });
 
 export const resetEditor = () => ({
@@ -68,5 +71,6 @@ export const deleteArticle = (token = '#', id) => ({
     endpoint: `article/${id}`,
     params: { token },
   },
-  success: (response, action) => (dispatch, getState) => dispatch(resetEditor()),
+  success: response => (dispatch, getState) => dispatch(resetEditor()),
+  failure: error => (dispatch, getState) => dispatch(loseAuth()),
 });

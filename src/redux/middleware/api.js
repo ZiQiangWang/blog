@@ -74,28 +74,31 @@ export default store => next => (action) => {
   next(actionWith({ type: requestType, isFetching: true }));
   return callApi(endpoint, method, params).then(
     (json) => {
-      next(actionWith({
-        response: json,
-        status: 200,
-        type: successType,
-        isFetching: false,
-      }));
-      success && next(success(json, action));
+      if (json.flag) {
+        next(actionWith({
+          response: json.content,
+          type: successType,
+          isFetching: false,
+        }));
+        success && next(success(json.content));
+      } else {
+        next(actionWith({
+          error: json.msg,
+          type: failureType,
+          isFetching: false,
+        }));
+        failure && next(failure(json.msg));
+      }
     },
   )
     .catch(
       (error) => {
         next(actionWith({
           error: error.message || 'Something bad happened',
-          status: error.status,
           type: failureType,
           isFetching: false,
         }));
-        failure && next(failure(error, action));
-
-        if (error.status === 401) {
-          next(loseAuth());
-        }
+        failure && next(failure(error.message));
       },
     );
 };

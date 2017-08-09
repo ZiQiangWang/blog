@@ -47,6 +47,9 @@ class EditArticle extends Component {
   render() {
     const { articles, articleIndex, title } = this.props;
     const id = this.props.match.params.id;
+    if (articleIndex === undefined) {
+      return <div></div>;
+    }
     if (!articleIndex.some(item => item.id === id)) {
       return <Redirect to="/edit" />;
     }

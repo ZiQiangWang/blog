@@ -16,15 +16,15 @@ class SignUp extends Component {
   constructor() {
     super();
     this.state = {
-      username: {valid: false, value: ''},
-      password: {valid: false, value: ''},
-      passwordRepeat: {valid: false, value: ''},
-      invitation: {valid: false, value: ''},
+      username: { valid: false, value: '' },
+      password: { valid: false, value: '' },
+      passwordRepeat: { valid: false, value: '' },
+      invitation: { valid: false, value: '' },
     };
   }
 
   handleSignUp = () => {
-    const { username, password, passwordRepeat, invitation } = this.state; 
+    const { username, password, passwordRepeat, invitation } = this.state;
     this.props.signup(username.value, password.value, passwordRepeat.value, invitation.value);
   }
 
@@ -32,8 +32,8 @@ class SignUp extends Component {
     const target = event.target;
 
     if (target.name === 'username') {
-      const usernamePatern = /^[\w]{4,12}$/
-      const newFieldObj = {value: target.value, valid: false};
+      const usernamePatern = /^[\w]{4,12}$/;
+      const newFieldObj = { value: target.value, valid: false };
       if (usernamePatern.test(target.value)) {
         newFieldObj.valid = true;
       }
@@ -42,13 +42,13 @@ class SignUp extends Component {
         [target.name]: newFieldObj,
       });
     } else if (target.name === 'password') {
-      const passwordPatern = /^[\w]{6,12}$/
-      const pwd = {value: target.value, valid: false};
-      const pwdRp = {value: this.state.passwordRepeat.value, valid: false};
+      const passwordPatern = /^[\w]{6,12}$/;
+      const pwd = { value: target.value, valid: false };
+      const pwdRp = { value: this.state.passwordRepeat.value, valid: false };
       if (passwordPatern.test(target.value)) {
         pwd.valid = true;
       }
-      
+
       if (pwdRp.value === target.value) {
         pwdRp.valid = true;
       }
@@ -58,7 +58,7 @@ class SignUp extends Component {
         passwordRepeat: pwdRp,
       });
     } else if (target.name === 'passwordRepeat') {
-      const newFieldObj = {value: target.value, valid: false};
+      const newFieldObj = { value: target.value, valid: false };
       if (this.state.password.value === target.value) {
         newFieldObj.valid = true;
       }
@@ -66,8 +66,8 @@ class SignUp extends Component {
         ...this.state,
         [target.name]: newFieldObj,
       });
-    } else if(target.name === 'invitation') {
-      const newFieldObj = {value: target.value, valid: false};
+    } else if (target.name === 'invitation') {
+      const newFieldObj = { value: target.value, valid: false };
       if (target.value.length === 8) {
         newFieldObj.valid = true;
       }
@@ -79,8 +79,7 @@ class SignUp extends Component {
   }
 
   render() {
-
-    const { username, password, passwordRepeat, invitation } = this.state; 
+    const { username, password, passwordRepeat, invitation } = this.state;
     return (
       <div className="login-page">
         <h4 className="title">
@@ -107,9 +106,10 @@ class SignUp extends Component {
             <input type="text" name="invitation" placeholder="请输入邀请码" value={invitation.value} onChange={this.handleChange} />
             {!invitation.valid && invitation.value !== '' && <span className="warning">邀请码为8位字母和数字</span>}
           </div>
-          <button 
-            onClick={() => this.handleSignUp()} 
-            disabled={ !(username.valid && password.valid && passwordRepeat.valid && invitation.valid)}>注册</button>
+          <button
+            onClick={() => this.handleSignUp()}
+            disabled={!(username.valid && password.valid && passwordRepeat.valid && invitation.valid)}
+          >注册</button>
         </div>
       </div>
     );

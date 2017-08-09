@@ -14,18 +14,19 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      username: {valid: false, value: ''},
-      password: {valid: false, value: ''},
-    }
+      username: { valid: false, value: '' },
+      password: { valid: false, value: '' },
+    };
   }
 
   handleLogin = () => {
-    this.props.login(this.state.username, this.state.password);
+    const { username, password } = this.state;
+    this.props.login(username.value, password.value);
   }
 
   handleChange = (event) => {
     const target = event.target;
-    const newObj = {value: target.value, valid: false};
+    const newObj = { value: target.value, valid: false };
 
     if (target.value !== '') {
       newObj.valid = true;
@@ -42,7 +43,7 @@ class Login extends Component {
       return <Redirect to="/edit" />;
     }
 
-    const { username, password } = this.state; 
+    const { username, password } = this.state;
     return (
       <div className="login-page">
         <h4 className="title">
@@ -59,11 +60,12 @@ class Login extends Component {
           </div>
           <div className="input-container">
             <input type="password" name="password" placeholder="请输入密码" value={password.value} onChange={this.handleChange} />
-            {!password.valid && password.value != '' && <span className="warning">密码不能为空</span>}
+            {!password.valid && password.value !== '' && <span className="warning">密码不能为空</span>}
           </div>
-          <button 
-            onClick={() => this.handleLogin()} 
-            disabled={!(username.valid && password.valid)}>登录</button>
+          <button
+            onClick={() => this.handleLogin()}
+            disabled={!(username.valid && password.valid)}
+          >登录</button>
         </div>
       </div>
     );

@@ -18,18 +18,18 @@ def article_list():
   token = params['token']
   author_id = rds.get(token)
   if not author_id:
-    abort(401)
+    return jsonify({'flag': False, 'msg':'咩有权限'})
   try:
     articles = db_util.get_articles_of_user(int(author_id))
   except Exception as e:
     traceback.print_exc()
     abort(500)
-  return jsonify(articles)
+  return jsonify({'flag': True, 'msg': '', 'content': articles })
 
 @article.route('/page/<int:num>', methods=['GET'])
 def article_page(num):
   articles = db_util.get_articles_of_page(num)
-  return jsonify(articles)
+  return jsonify({'flag': True, 'msg': '', 'content': articles })
 
 
 @article.route('/<articleId>', methods=['GET'])
@@ -39,7 +39,7 @@ def article_detail(articleId):
   except Exception as e:
     traceback.print_exc()
     abort(500)
-  return jsonify(article)
+  return jsonify({'flag': True, 'msg': '', 'content': article })
 
 @article.route('/blog/<articleId>', methods=['GET'])
 def article_blog_detail(articleId):
@@ -48,7 +48,7 @@ def article_blog_detail(articleId):
   except Exception as e:
     traceback.print_exc()
     abort(500)
-  return jsonify(article)
+  return jsonify({'flag': True, 'msg': '', 'content': article })
 
 @article.route('/', methods=['POST'])
 def create_article():
@@ -56,7 +56,7 @@ def create_article():
   token = params['token']
   author_id = rds.get(token)
   if not author_id:
-    abort(401)
+    return jsonify({'flag': False, 'msg':'咩有权限'})
   params['author_id'] = int(author_id)
   del params['token']
   
@@ -66,7 +66,7 @@ def create_article():
     traceback.print_exc()
     abort(500)
 
-  return jsonify(article)
+  return jsonify({'flag': True, 'msg': '', 'content': article })
 
 @article.route('/<articleId>', methods=['PUT'])
 def update_article(articleId):
@@ -75,7 +75,7 @@ def update_article(articleId):
   token = params['token']
   author_id = rds.get(token)
   if not author_id:
-    abort(401)
+    return jsonify({'flag': False, 'msg':'咩有权限'})
   del params['token']
 
   try:
@@ -84,7 +84,7 @@ def update_article(articleId):
     traceback.print_exc()
     abort(500)
 
-  return jsonify(article)
+  return jsonify({'flag': True, 'msg': '', 'content': article })
 
 @article.route('/<articleId>', methods=['DELETE'])
 def delete_article(articleId):
@@ -92,7 +92,7 @@ def delete_article(articleId):
   token = params['token']
   author_id = rds.get(token)
   if not author_id:
-    abort(401)
+    return jsonify({'flag': False, 'msg':'咩有权限'})
 
   try:
     db_util.delete_article_by_id(articleId)
@@ -100,4 +100,4 @@ def delete_article(articleId):
     traceback.print_exc()
     abort(500)
 
-  return jsonify({'articleId': articleId})
+  return jsonify({'flag': True, 'msg': '', 'content': {'articleId': articleId} })

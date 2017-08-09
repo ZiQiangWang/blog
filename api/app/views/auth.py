@@ -19,16 +19,18 @@ def create_token():
     token = util.random_str()
     rds.set(token, auth)
     rds.expire(token, 24 * 60 * 60 )
-    return jsonify({'token': token, 'username': info['name']})
+    return jsonify({'flag': True, 'msg':'','content': {'token': token, 'username': info['name']}})
   else:
-    abort(401)
+    return jsonify({'flag': False, 'msg': '登录失败，用户名或密码错误'})
 
 @auth.route('/delete', methods=['DELETE'])
 def delete_token():
   token = json.loads(request.data)['token']
-
-  result = rds.delete(token)
-  return jsonify({'flag': bool(result)})
+  try:
+    result = rds.delete(token)
+    return jsonify({'flag': True, 'msg':''})
+  except Exception as e:
+    return jsonify({'flag': False, 'msg':'登出失败'})
 
 @auth.route('/signup', methods=['POST'])
 def sign_up():
@@ -55,7 +57,7 @@ def sign_up():
 
   db_util.create_user(name, password,code);
 
-  return jsonify({'flag': True})
+  return jsonify({'flag': True, 'msg': ''})
 
 
 

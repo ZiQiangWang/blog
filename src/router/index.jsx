@@ -12,6 +12,7 @@ import NotFound from '../component/NotFound';
 import Login from '../redux/containers/Login';
 import SignUp from '../redux/containers/SignUp';
 import BackToTop from '../redux/containers/BackToTop';
+import Notify from '../component/Notify';
 
 const routes = () => {
   const backConfig = {
@@ -23,6 +24,7 @@ const routes = () => {
   const route = (
     <div>
       <BackToTop {...backConfig} />
+      <Notify />
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/login" component={Login} />

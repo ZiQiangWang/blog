@@ -1,2 +1,2 @@
 # blog
-A demo of react and redxu
+A demo of react and redux
