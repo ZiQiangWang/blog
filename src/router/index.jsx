@@ -35,10 +35,10 @@ const routes = () => {
       </Switch>
     </div>
   );
-  if (process.env.NODE_ENV === 'dev') {
     return <HashRouter>{route}</HashRouter>;
-  }
-  return <BrowserRouter>{route}</BrowserRouter>;
+  // if (process.env.NODE_ENV === 'dev') {
+  // }
+  // return <BrowserRouter>{route}</BrowserRouter>;
 };
 
 export default routes;
